@@ -4,6 +4,7 @@
 Piece::Piece(PieceType type, Color color)
 {
 	this->type = type;
+
 	switch (type){
 	case King: 
 		this->value = 20;
@@ -35,16 +36,23 @@ Color Piece::getColor(){
 	return color;
 }
 
-list<GameStatus> Piece::generateMoves(GameStatus & currentGameStatus)
+list<GameStatus> Piece::generateMoves(GameStatus & currentGameStatus, int x, int y)
 {
+	
 	list<GameStatus> possibleMoves;
 	/*
 	switch (type)
 	{
-	case King:
+	case King:		
+		if (currentGameStatus.controlledByWhite(x, y - 1))
+		{
+
+		}
 		
 		
 	
 	}
 	*/
+	return possibleMoves;
+	
 }

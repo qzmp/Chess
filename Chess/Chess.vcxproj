@@ -66,6 +66,7 @@
   <ItemGroup>
     <ClInclude Include="GameStatus.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Movement.h" />
     <ClInclude Include="Piece.h" />
     <ClInclude Include="Rating.h" />
     <ClInclude Include="Square.h" />
@@ -73,6 +74,7 @@
   <ItemGroup>
     <ClCompile Include="GameStatus.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Movement.cpp" />
     <ClCompile Include="Piece.cpp" />
     <ClCompile Include="Rating.cpp" />
     <ClCompile Include="Square.cpp" />

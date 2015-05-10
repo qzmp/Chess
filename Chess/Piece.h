@@ -2,7 +2,7 @@
 
 #include <vector>
 #include <list>
-//#include "Board.h"
+#include "GameStatus.h"
 
 class GameStatus;
 
@@ -27,8 +27,6 @@ class Piece
 	
 private:
 	double value;
-	int xPos;
-	int yPos;
 	Color color;
 	PieceType type;
 
@@ -36,6 +34,6 @@ public:
 	Piece(PieceType type, Color color);
 	~Piece();
 
-	list<GameStatus> generateMoves(GameStatus& currentStatus);
+	list<GameStatus> generateMoves(GameStatus& currentStatus, int x, int y);
 	Color getColor();
 };

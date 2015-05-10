@@ -16,13 +16,32 @@ void Square::setPiece(Piece& piece)
 	this->piece = &piece;
 }
 
-Piece* Square::getPiece(){
+void Square::removePiece()
+{
+	this->piece = nullptr;
+}
+
+Piece* Square::getPiece()
+{
 	return this->piece;
 }
 
-bool Square::takenBy(Color color){
+bool Square::takenBy(Color color)
+{
 	if (this->piece != nullptr)
 		return this->piece->getColor() == color;
 	else return false;
 }
+
+bool Square::isControlledByBlack()
+{
+	return controlledByBlack;
+}
+
+bool Square::isControlledByWhite()
+{
+	return controlledByWhite;
+}
+
+
 

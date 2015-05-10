@@ -1,8 +1,12 @@
 #pragma once
 
 //#include <vector>
-#include "Piece.h"
+//#include "Piece.h"
 #include "Square.h"
+
+class Square;
+class Piece;
+enum Color;
 
 using namespace std;
 
@@ -25,5 +29,8 @@ public:
 	vector<vector<Square>>& getBoard();
 
 	list<GameStatus> generateMoves();
+
+	bool isControlledByWhite(int x, int y);
+	bool isControlledByBlack(int x, int y);
 };
 

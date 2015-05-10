@@ -60,8 +60,18 @@ list<GameStatus> GameStatus::generateMoves()
 		for (int j = 0; j < 8; j++)
 		{
 			if (this->board[i][j].getPiece() != nullptr)
-				moves.splice(moves.end(), this->board[i][j].getPiece()->generateMoves(*this));
+				moves.splice(moves.end(), this->board[i][j].getPiece()->generateMoves(*this, j, i));
 		}
 	}
 	return moves;
+}
+
+bool GameStatus::isControlledByBlack(int x, int y)
+{
+	return this->board[y][x].isControlledByBlack();
+}
+
+bool GameStatus::isControlledByWhite(int x, int y)
+{
+	return this->board[y][x].isControlledByWhite();
 }
