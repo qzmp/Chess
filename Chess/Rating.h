@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Board.h"
+#include "GameStatus.h"
 
 class Rating
 {
@@ -8,6 +8,6 @@ public:
 	Rating();
 	~Rating();
 
-	static double Rate(Board board);
+	static double Rate(GameStatus board);
 };
 

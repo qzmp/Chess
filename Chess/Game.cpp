@@ -12,6 +12,6 @@ Game::~Game()
 
 int main()
 {
-	Board board = Board();
+	GameStatus board = GameStatus();
 	board.startSetup();
 }

@@ -64,16 +64,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Board.h" />
+    <ClInclude Include="GameStatus.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Piece.h" />
     <ClInclude Include="Rating.h" />
+    <ClInclude Include="Square.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Board.cpp" />
+    <ClCompile Include="GameStatus.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Piece.cpp" />
     <ClCompile Include="Rating.cpp" />
+    <ClCompile Include="Square.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,18 +1,11 @@
-﻿Build started 2015-05-09 20:21:55.
+﻿Build started 2015-05-10 14:27:23.
      1>Project "C:\Users\qzmp\SkyDrive\SI\Chess\Chess\Chess.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         E:\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Board.cpp Game.cpp Piece.cpp Rating.cpp
+         E:\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Piece.cpp
          Piece.cpp
-     1>c:\users\qzmp\skydrive\si\chess\chess\piece.cpp(44): error C2143: syntax error : missing ';' before '}'
-         Board.cpp
-         Generating Code...
-         Compiling...
-         Game.cpp
-         Generating Code...
-         Skipping... (no relevant changes detected)
-         Rating.cpp
+     1>c:\users\qzmp\skydrive\si\chess\chess\piece.cpp(50): error C4716: 'Piece::generateMoves' : must return a value
      1>Done Building Project "C:\Users\qzmp\SkyDrive\SI\Chess\Chess\Chess.vcxproj" (Build target(s)) -- FAILED.
 
 Build FAILED.
 
-Time Elapsed 00:00:00.96
+Time Elapsed 00:00:00.24

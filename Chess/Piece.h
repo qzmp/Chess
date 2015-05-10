@@ -1,9 +1,10 @@
 #pragma once
 
 #include <vector>
+#include <list>
 //#include "Board.h"
 
-class Board;
+class GameStatus;
 
 using namespace std;
 
@@ -35,5 +36,6 @@ public:
 	Piece(PieceType type, Color color);
 	~Piece();
 
-	vector<Board> generateMoves(Board& currentBoard);
+	list<GameStatus> generateMoves(GameStatus& currentStatus);
+	Color getColor();
 };

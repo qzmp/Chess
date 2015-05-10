@@ -31,10 +31,14 @@ Piece::~Piece()
 {
 }
 
-vector<Board> Piece::generateMoves(Board & currentBoard)
-{
-	vector<Board> possibleMoves;
+Color Piece::getColor(){
+	return color;
+}
 
+list<GameStatus> Piece::generateMoves(GameStatus & currentGameStatus)
+{
+	list<GameStatus> possibleMoves;
+	/*
 	switch (type)
 	{
 	case King:
@@ -42,4 +46,5 @@ vector<Board> Piece::generateMoves(Board & currentBoard)
 		
 	
 	}
+	*/
 }
