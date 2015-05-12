@@ -13,27 +13,16 @@ enum Color{
 	White
 };
 
-enum PieceType{
-	King,
-	Queen,
-	Rook,
-	Bishop,
-	Knight,
-	Pawn
-};
-
 class Piece
 {
-	
-private:
+protected:
 	double value;
 	Color color;
-	PieceType type;
 
 public:
-	Piece(PieceType type, Color color);
-	~Piece();
-
-	list<GameStatus> generateMoves(GameStatus& currentStatus, int x, int y);
+	Piece(Color color);
+	virtual list<GameStatus> generateMoves(GameStatus& currentStatus, int x, int y) = 0;
 	Color getColor();
+	void setColor(Color color);
+	double getValue();
 };

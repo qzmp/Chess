@@ -1,51 +1,51 @@
 #include "Movement.h"
 
 
-void Movement::moveUp(vector<vector<Square>> & board, int x, int y)
+void Movement::moveUp(vector<vector<Piece*>> & board, int x, int y)
 {
-	board[y - 1][x].setPiece(*board[y][x].getPiece());
-	board[y][x].removePiece();
+	board[y - 1][x] = (board[y][x]);
+	board[y][x] = nullptr;
 }
 
-void Movement::moveDown(vector<vector<Square>> & board, int x, int y)
+void Movement::moveDown(vector<vector<Piece*>> & board, int x, int y)
 {
-	board[y + 1][x].setPiece(*board[y][x].getPiece());
-	board[y][x].removePiece();
+	board[y + 1][x] = board[y][x];
+	board[y][x] = nullptr;
 }
 
-void Movement::moveRight(vector<vector<Square>> & board, int x, int y)
+void Movement::moveRight(vector<vector<Piece*>> & board, int x, int y)
 {
-	board[y][x + 1].setPiece(*board[y][x].getPiece());
-	board[y][x].removePiece();
+	board[y][x + 1] = board[y][x];
+	board[y][x] = nullptr;
 }
 
-void Movement::moveLeft(vector<vector<Square>> & board, int x, int y)
+void Movement::moveLeft(vector<vector<Piece*>> & board, int x, int y)
 {
-	board[y][x - 1].setPiece(*board[y][x].getPiece());
-	board[y][x].removePiece();
+	board[y][x - 1] = board[y][x];
+	board[y][x] = nullptr;
 }
 
-void Movement::moveUpRight(vector<vector<Square>> & board, int x, int y)
+void Movement::moveUpRight(vector<vector<Piece*>> & board, int x, int y)
 {
-	board[y - 1][x + 1].setPiece(*board[y][x].getPiece());
-	board[y][x].removePiece();
+	board[y - 1][x + 1] = board[y][x];
+	board[y][x] = nullptr;
 }
 
-void Movement::moveUpLeft(vector<vector<Square>> & board, int x, int y)
+void Movement::moveUpLeft(vector<vector<Piece*>> & board, int x, int y)
 {
-	board[y - 1][x - 1].setPiece(*board[y][x].getPiece());
-	board[y][x].removePiece();
+	board[y - 1][x - 1] = board[y][x];
+	board[y][x] = nullptr;
 }
 
-void Movement::moveDownRight(vector<vector<Square>> & board, int x, int y)
+void Movement::moveDownRight(vector<vector<Piece*>> & board, int x, int y)
 {
-	board[y + 1][x + 1].setPiece(*board[y][x].getPiece());
-	board[y][x].removePiece();
+	board[y + 1][x + 1] = board[y][x];
+	board[y][x] = nullptr;
 }
 
-void Movement::moveDownLeft(vector<vector<Square>> & board, int x, int y)
+void Movement::moveDownLeft(vector<vector<Piece*>> & board, int x, int y)
 {
-	board[y + 1][x - 1].setPiece(*board[y][x].getPiece());
-	board[y][x].removePiece();
+	board[y + 1][x - 1] = board[y][x];
+	board[y][x] = nullptr;
 }
 

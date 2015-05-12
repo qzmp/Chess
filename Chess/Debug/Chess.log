@@ -1,26 +1,169 @@
-﻿Build started 2015-05-10 20:29:21.
+﻿Build started 2015-05-12 17:43:28.
      1>Project "C:\Users\qzmp\SkyDrive\SI\Chess\Chess\Chess.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         E:\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Game.cpp GameStatus.cpp Movement.cpp Piece.cpp Rating.cpp Square.cpp
+         E:\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Bishop.cpp Game.cpp GameStatus.cpp King.cpp Knight.cpp Movement.cpp Pawn.cpp Piece.cpp Queen.cpp Rating.cpp Rook.cpp
+         Rook.cpp
+     1>c:\users\qzmp\skydrive\si\chess\chess\king.h(9): error C2504: 'Piece' : base class undefined
+     1>c:\users\qzmp\skydrive\si\chess\chess\king.h(14): error C2143: syntax error : missing ';' before '<'
+     1>c:\users\qzmp\skydrive\si\chess\chess\king.h(14): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\qzmp\skydrive\si\chess\chess\king.h(14): error C2238: unexpected token(s) preceding ';'
+     1>c:\users\qzmp\skydrive\si\chess\chess\queen.h(9): error C2504: 'Piece' : base class undefined
+     1>c:\users\qzmp\skydrive\si\chess\chess\queen.h(14): error C2143: syntax error : missing ';' before '<'
+     1>c:\users\qzmp\skydrive\si\chess\chess\queen.h(14): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\qzmp\skydrive\si\chess\chess\queen.h(14): error C2238: unexpected token(s) preceding ';'
+     1>c:\users\qzmp\skydrive\si\chess\chess\bishop.h(9): error C2504: 'Piece' : base class undefined
+     1>c:\users\qzmp\skydrive\si\chess\chess\bishop.h(14): error C2143: syntax error : missing ';' before '<'
+     1>c:\users\qzmp\skydrive\si\chess\chess\bishop.h(14): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\qzmp\skydrive\si\chess\chess\bishop.h(14): error C2238: unexpected token(s) preceding ';'
+     1>c:\users\qzmp\skydrive\si\chess\chess\knight.h(9): error C2504: 'Piece' : base class undefined
+     1>c:\users\qzmp\skydrive\si\chess\chess\knight.h(14): error C2143: syntax error : missing ';' before '<'
+     1>c:\users\qzmp\skydrive\si\chess\chess\knight.h(14): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\qzmp\skydrive\si\chess\chess\knight.h(14): error C2238: unexpected token(s) preceding ';'
+     1>c:\users\qzmp\skydrive\si\chess\chess\pawn.h(9): error C2504: 'Piece' : base class undefined
+     1>c:\users\qzmp\skydrive\si\chess\chess\pawn.h(14): error C2143: syntax error : missing ';' before '<'
+     1>c:\users\qzmp\skydrive\si\chess\chess\pawn.h(14): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\qzmp\skydrive\si\chess\chess\pawn.h(14): error C2238: unexpected token(s) preceding ';'
+         Queen.cpp
+     1>c:\users\qzmp\skydrive\si\chess\chess\king.h(9): error C2504: 'Piece' : base class undefined
+     1>c:\users\qzmp\skydrive\si\chess\chess\king.h(14): error C2143: syntax error : missing ';' before '<'
+     1>c:\users\qzmp\skydrive\si\chess\chess\king.h(14): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\qzmp\skydrive\si\chess\chess\king.h(14): error C2238: unexpected token(s) preceding ';'
+     1>c:\users\qzmp\skydrive\si\chess\chess\rook.h(9): error C2504: 'Piece' : base class undefined
+     1>c:\users\qzmp\skydrive\si\chess\chess\rook.h(14): error C2143: syntax error : missing ';' before '<'
+     1>c:\users\qzmp\skydrive\si\chess\chess\rook.h(14): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\qzmp\skydrive\si\chess\chess\rook.h(14): error C2238: unexpected token(s) preceding ';'
+     1>c:\users\qzmp\skydrive\si\chess\chess\bishop.h(9): error C2504: 'Piece' : base class undefined
+     1>c:\users\qzmp\skydrive\si\chess\chess\bishop.h(14): error C2143: syntax error : missing ';' before '<'
+     1>c:\users\qzmp\skydrive\si\chess\chess\bishop.h(14): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\qzmp\skydrive\si\chess\chess\bishop.h(14): error C2238: unexpected token(s) preceding ';'
+     1>c:\users\qzmp\skydrive\si\chess\chess\knight.h(9): error C2504: 'Piece' : base class undefined
+     1>c:\users\qzmp\skydrive\si\chess\chess\knight.h(14): error C2143: syntax error : missing ';' before '<'
+     1>c:\users\qzmp\skydrive\si\chess\chess\knight.h(14): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\qzmp\skydrive\si\chess\chess\knight.h(14): error C2238: unexpected token(s) preceding ';'
+     1>c:\users\qzmp\skydrive\si\chess\chess\pawn.h(9): error C2504: 'Piece' : base class undefined
+     1>c:\users\qzmp\skydrive\si\chess\chess\pawn.h(14): error C2143: syntax error : missing ';' before '<'
+     1>c:\users\qzmp\skydrive\si\chess\chess\pawn.h(14): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\qzmp\skydrive\si\chess\chess\pawn.h(14): error C2238: unexpected token(s) preceding ';'
          Piece.cpp
+     1>c:\users\qzmp\skydrive\si\chess\chess\king.h(9): error C2504: 'Piece' : base class undefined
+     1>c:\users\qzmp\skydrive\si\chess\chess\king.h(14): error C2143: syntax error : missing ';' before '<'
+     1>c:\users\qzmp\skydrive\si\chess\chess\king.h(14): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\qzmp\skydrive\si\chess\chess\king.h(14): error C2238: unexpected token(s) preceding ';'
+     1>c:\users\qzmp\skydrive\si\chess\chess\queen.h(9): error C2504: 'Piece' : base class undefined
+     1>c:\users\qzmp\skydrive\si\chess\chess\queen.h(14): error C2143: syntax error : missing ';' before '<'
+     1>c:\users\qzmp\skydrive\si\chess\chess\queen.h(14): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\qzmp\skydrive\si\chess\chess\queen.h(14): error C2238: unexpected token(s) preceding ';'
+     1>c:\users\qzmp\skydrive\si\chess\chess\rook.h(9): error C2504: 'Piece' : base class undefined
+     1>c:\users\qzmp\skydrive\si\chess\chess\rook.h(14): error C2143: syntax error : missing ';' before '<'
+     1>c:\users\qzmp\skydrive\si\chess\chess\rook.h(14): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\qzmp\skydrive\si\chess\chess\rook.h(14): error C2238: unexpected token(s) preceding ';'
+     1>c:\users\qzmp\skydrive\si\chess\chess\bishop.h(9): error C2504: 'Piece' : base class undefined
+     1>c:\users\qzmp\skydrive\si\chess\chess\bishop.h(14): error C2143: syntax error : missing ';' before '<'
+     1>c:\users\qzmp\skydrive\si\chess\chess\bishop.h(14): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\qzmp\skydrive\si\chess\chess\bishop.h(14): error C2238: unexpected token(s) preceding ';'
+     1>c:\users\qzmp\skydrive\si\chess\chess\knight.h(9): error C2504: 'Piece' : base class undefined
+     1>c:\users\qzmp\skydrive\si\chess\chess\knight.h(14): error C2143: syntax error : missing ';' before '<'
+     1>c:\users\qzmp\skydrive\si\chess\chess\knight.h(14): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\qzmp\skydrive\si\chess\chess\knight.h(14): error C2238: unexpected token(s) preceding ';'
+     1>c:\users\qzmp\skydrive\si\chess\chess\pawn.h(9): error C2504: 'Piece' : base class undefined
+     1>c:\users\qzmp\skydrive\si\chess\chess\pawn.h(14): error C2143: syntax error : missing ';' before '<'
+     1>c:\users\qzmp\skydrive\si\chess\chess\pawn.h(14): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\qzmp\skydrive\si\chess\chess\pawn.h(14): error C2238: unexpected token(s) preceding ';'
+         Pawn.cpp
+     1>c:\users\qzmp\skydrive\si\chess\chess\king.h(9): error C2504: 'Piece' : base class undefined
+     1>c:\users\qzmp\skydrive\si\chess\chess\king.h(14): error C2143: syntax error : missing ';' before '<'
+     1>c:\users\qzmp\skydrive\si\chess\chess\king.h(14): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\qzmp\skydrive\si\chess\chess\king.h(14): error C2238: unexpected token(s) preceding ';'
+     1>c:\users\qzmp\skydrive\si\chess\chess\queen.h(9): error C2504: 'Piece' : base class undefined
+     1>c:\users\qzmp\skydrive\si\chess\chess\queen.h(14): error C2143: syntax error : missing ';' before '<'
+     1>c:\users\qzmp\skydrive\si\chess\chess\queen.h(14): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\qzmp\skydrive\si\chess\chess\queen.h(14): error C2238: unexpected token(s) preceding ';'
+     1>c:\users\qzmp\skydrive\si\chess\chess\rook.h(9): error C2504: 'Piece' : base class undefined
+     1>c:\users\qzmp\skydrive\si\chess\chess\rook.h(14): error C2143: syntax error : missing ';' before '<'
+     1>c:\users\qzmp\skydrive\si\chess\chess\rook.h(14): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\qzmp\skydrive\si\chess\chess\rook.h(14): error C2238: unexpected token(s) preceding ';'
+     1>c:\users\qzmp\skydrive\si\chess\chess\bishop.h(9): error C2504: 'Piece' : base class undefined
+     1>c:\users\qzmp\skydrive\si\chess\chess\bishop.h(14): error C2143: syntax error : missing ';' before '<'
+     1>c:\users\qzmp\skydrive\si\chess\chess\bishop.h(14): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\qzmp\skydrive\si\chess\chess\bishop.h(14): error C2238: unexpected token(s) preceding ';'
+     1>c:\users\qzmp\skydrive\si\chess\chess\knight.h(9): error C2504: 'Piece' : base class undefined
+     1>c:\users\qzmp\skydrive\si\chess\chess\knight.h(14): error C2143: syntax error : missing ';' before '<'
+     1>c:\users\qzmp\skydrive\si\chess\chess\knight.h(14): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\qzmp\skydrive\si\chess\chess\knight.h(14): error C2238: unexpected token(s) preceding ';'
+         Knight.cpp
+     1>c:\users\qzmp\skydrive\si\chess\chess\king.h(9): error C2504: 'Piece' : base class undefined
+     1>c:\users\qzmp\skydrive\si\chess\chess\king.h(14): error C2143: syntax error : missing ';' before '<'
+     1>c:\users\qzmp\skydrive\si\chess\chess\king.h(14): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\qzmp\skydrive\si\chess\chess\king.h(14): error C2238: unexpected token(s) preceding ';'
+     1>c:\users\qzmp\skydrive\si\chess\chess\queen.h(9): error C2504: 'Piece' : base class undefined
+     1>c:\users\qzmp\skydrive\si\chess\chess\queen.h(14): error C2143: syntax error : missing ';' before '<'
+     1>c:\users\qzmp\skydrive\si\chess\chess\queen.h(14): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\qzmp\skydrive\si\chess\chess\queen.h(14): error C2238: unexpected token(s) preceding ';'
+     1>c:\users\qzmp\skydrive\si\chess\chess\rook.h(9): error C2504: 'Piece' : base class undefined
+     1>c:\users\qzmp\skydrive\si\chess\chess\rook.h(14): error C2143: syntax error : missing ';' before '<'
+     1>c:\users\qzmp\skydrive\si\chess\chess\rook.h(14): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\qzmp\skydrive\si\chess\chess\rook.h(14): error C2238: unexpected token(s) preceding ';'
+     1>c:\users\qzmp\skydrive\si\chess\chess\bishop.h(9): error C2504: 'Piece' : base class undefined
+     1>c:\users\qzmp\skydrive\si\chess\chess\bishop.h(14): error C2143: syntax error : missing ';' before '<'
+     1>c:\users\qzmp\skydrive\si\chess\chess\bishop.h(14): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\qzmp\skydrive\si\chess\chess\bishop.h(14): error C2238: unexpected token(s) preceding ';'
+     1>c:\users\qzmp\skydrive\si\chess\chess\pawn.h(9): error C2504: 'Piece' : base class undefined
+     1>c:\users\qzmp\skydrive\si\chess\chess\pawn.h(14): error C2143: syntax error : missing ';' before '<'
+     1>c:\users\qzmp\skydrive\si\chess\chess\pawn.h(14): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\qzmp\skydrive\si\chess\chess\pawn.h(14): error C2238: unexpected token(s) preceding ';'
+         King.cpp
+     1>c:\users\qzmp\skydrive\si\chess\chess\queen.h(9): error C2504: 'Piece' : base class undefined
+     1>c:\users\qzmp\skydrive\si\chess\chess\queen.h(14): error C2143: syntax error : missing ';' before '<'
+     1>c:\users\qzmp\skydrive\si\chess\chess\queen.h(14): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\qzmp\skydrive\si\chess\chess\queen.h(14): error C2238: unexpected token(s) preceding ';'
+     1>c:\users\qzmp\skydrive\si\chess\chess\rook.h(9): error C2504: 'Piece' : base class undefined
+     1>c:\users\qzmp\skydrive\si\chess\chess\rook.h(14): error C2143: syntax error : missing ';' before '<'
+     1>c:\users\qzmp\skydrive\si\chess\chess\rook.h(14): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\qzmp\skydrive\si\chess\chess\rook.h(14): error C2238: unexpected token(s) preceding ';'
+     1>c:\users\qzmp\skydrive\si\chess\chess\bishop.h(9): error C2504: 'Piece' : base class undefined
+     1>c:\users\qzmp\skydrive\si\chess\chess\bishop.h(14): error C2143: syntax error : missing ';' before '<'
+     1>c:\users\qzmp\skydrive\si\chess\chess\bishop.h(14): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\qzmp\skydrive\si\chess\chess\bishop.h(14): error C2238: unexpected token(s) preceding ';'
+     1>c:\users\qzmp\skydrive\si\chess\chess\knight.h(9): error C2504: 'Piece' : base class undefined
+     1>c:\users\qzmp\skydrive\si\chess\chess\knight.h(14): error C2143: syntax error : missing ';' before '<'
+     1>c:\users\qzmp\skydrive\si\chess\chess\knight.h(14): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\qzmp\skydrive\si\chess\chess\knight.h(14): error C2238: unexpected token(s) preceding ';'
+     1>c:\users\qzmp\skydrive\si\chess\chess\pawn.h(9): error C2504: 'Piece' : base class undefined
+     1>c:\users\qzmp\skydrive\si\chess\chess\pawn.h(14): error C2143: syntax error : missing ';' before '<'
+     1>c:\users\qzmp\skydrive\si\chess\chess\pawn.h(14): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\qzmp\skydrive\si\chess\chess\pawn.h(14): error C2238: unexpected token(s) preceding ';'
+         Bishop.cpp
+     1>c:\users\qzmp\skydrive\si\chess\chess\king.h(9): error C2504: 'Piece' : base class undefined
+     1>c:\users\qzmp\skydrive\si\chess\chess\king.h(14): error C2143: syntax error : missing ';' before '<'
+     1>c:\users\qzmp\skydrive\si\chess\chess\king.h(14): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\qzmp\skydrive\si\chess\chess\king.h(14): error C2238: unexpected token(s) preceding ';'
+     1>c:\users\qzmp\skydrive\si\chess\chess\queen.h(9): error C2504: 'Piece' : base class undefined
+     1>c:\users\qzmp\skydrive\si\chess\chess\queen.h(14): error C2143: syntax error : missing ';' before '<'
+     1>c:\users\qzmp\skydrive\si\chess\chess\queen.h(14): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\qzmp\skydrive\si\chess\chess\queen.h(14): error C2238: unexpected token(s) preceding ';'
+     1>c:\users\qzmp\skydrive\si\chess\chess\rook.h(9): error C2504: 'Piece' : base class undefined
+     1>c:\users\qzmp\skydrive\si\chess\chess\rook.h(14): error C2143: syntax error : missing ';' before '<'
+     1>c:\users\qzmp\skydrive\si\chess\chess\rook.h(14): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\qzmp\skydrive\si\chess\chess\rook.h(14): error C2238: unexpected token(s) preceding ';'
+     1>c:\users\qzmp\skydrive\si\chess\chess\knight.h(9): error C2504: 'Piece' : base class undefined
+     1>c:\users\qzmp\skydrive\si\chess\chess\knight.h(14): error C2143: syntax error : missing ';' before '<'
+     1>c:\users\qzmp\skydrive\si\chess\chess\knight.h(14): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\qzmp\skydrive\si\chess\chess\knight.h(14): error C2238: unexpected token(s) preceding ';'
+     1>c:\users\qzmp\skydrive\si\chess\chess\pawn.h(9): error C2504: 'Piece' : base class undefined
+     1>c:\users\qzmp\skydrive\si\chess\chess\pawn.h(14): error C2143: syntax error : missing ';' before '<'
+     1>c:\users\qzmp\skydrive\si\chess\chess\pawn.h(14): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\qzmp\skydrive\si\chess\chess\pawn.h(14): error C2238: unexpected token(s) preceding ';'
          Generating Code...
          Compiling...
-         Square.cpp
+         Game.cpp
+         Generating Code...
+         Compiling...
          Rating.cpp
          Movement.cpp
          GameStatus.cpp
-         Game.cpp
          Generating Code...
-       Link:
-         E:\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\qzmp\SkyDrive\SI\Chess\Debug\Chess.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\qzmp\SkyDrive\SI\Chess\Debug\Chess.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\qzmp\SkyDrive\SI\Chess\Debug\Chess.lib" /MACHINE:X86 Debug\GameStatus.obj
-         Debug\Game.obj
-         Debug\Movement.obj
-         Debug\Piece.obj
-         Debug\Rating.obj
-         Debug\Square.obj
-         Chess.vcxproj -> C:\Users\qzmp\SkyDrive\SI\Chess\Debug\Chess.exe
-     1>Done Building Project "C:\Users\qzmp\SkyDrive\SI\Chess\Chess\Chess.vcxproj" (Build target(s)).
+     1>Done Building Project "C:\Users\qzmp\SkyDrive\SI\Chess\Chess\Chess.vcxproj" (Build target(s)) -- FAILED.
 
-Build succeeded.
+Build FAILED.
 
-Time Elapsed 00:00:04.01
+Time Elapsed 00:00:01.70

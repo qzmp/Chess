@@ -11,6 +11,7 @@ GameStatus::GameStatus()
 GameStatus::GameStatus(GameStatus& otherGameStatus)
 {
 	this->board = otherGameStatus.getBoard();
+	this->currentPlayer = otherGameStatus.currentPlayer;
 }
 
 GameStatus::~GameStatus()
@@ -18,35 +19,35 @@ GameStatus::~GameStatus()
 }
 
 void GameStatus::startSetup(){
-
-	board[0][0].setPiece(*new Piece(Rook, Black));
-	board[0][1].setPiece(*new Piece(Knight, Black));
-	board[0][2].setPiece(*new Piece(Bishop, Black));
-	board[0][3].setPiece(*new Piece(Queen, Black));
-	board[0][4].setPiece(*new Piece(King, Black));
-	board[0][5].setPiece(*new Piece(Bishop, Black));
-	board[0][6].setPiece(*new Piece(Knight, Black));
-	board[0][7].setPiece(*new Piece(Rook, Black));
+	
+	board[0][0] = new Rook(Black);
+	board[0][1] = new Knight(Black);
+	board[0][2] = new Bishop(Black);
+	board[0][3] = new Queen(Black);
+	board[0][4] = new King(Black);
+	board[0][5] = new Bishop(Black);
+	board[0][6] = new Knight(Black);
+	board[0][7] = new Rook(Black);
 	for (int i = 0; i < 8; i++)
 	{
-		board[1][i].setPiece(*new Piece(Pawn, Black));
+		board[1][i] = new Pawn(Black);
 	}
 
-	board[7][0].setPiece(*new Piece(Rook, White));
-	board[7][1].setPiece(*new Piece(Knight, White));
-	board[7][2].setPiece(*new Piece(Bishop, White));
-	board[7][3].setPiece(*new Piece(Queen, White));
-	board[7][4].setPiece(*new Piece(King, White));
-	board[7][5].setPiece(*new Piece(Bishop, White));
-	board[7][6].setPiece(*new Piece(Knight, White));
-	board[7][7].setPiece(*new Piece(Rook, White));
+	board[7][0] = new Rook(White);
+	board[7][1] = new Knight(White);
+	board[7][2] = new Bishop(White);
+	board[7][3] = new Queen(White);
+	board[7][4] = new King(White);
+	board[7][5] = new Bishop(White);
+	board[7][6] = new Knight(White);
+	board[7][7] = new Rook(White);
 	for (int i = 0; i < 8; i++)
 	{
-		board[6][i].setPiece(*new Piece(Pawn, White));
+		board[6][i] = new Pawn(White);
 	}
 }
 
-vector<vector<Square>>& GameStatus::getBoard()
+vector<vector<Piece*>>& GameStatus::getBoard()
 {
 	return board;
 }
@@ -59,19 +60,14 @@ list<GameStatus> GameStatus::generateMoves()
 	{
 		for (int j = 0; j < 8; j++)
 		{
-			if (this->board[i][j].getPiece() != nullptr)
-				moves.splice(moves.end(), this->board[i][j].getPiece()->generateMoves(*this, j, i));
+			if (this->board[i][j] != nullptr)
+				moves.splice(moves.end(), this->board[i][j]->generateMoves(*this, j, i));
 		}
 	}
 	return moves;
 }
 
-bool GameStatus::isControlledByBlack(int x, int y)
+Color GameStatus::getCurrentPlayer()
 {
-	return this->board[y][x].isControlledByBlack();
-}
-
-bool GameStatus::isControlledByWhite(int x, int y)
-{
-	return this->board[y][x].isControlledByWhite();
+	return currentPlayer;
 }

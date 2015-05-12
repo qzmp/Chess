@@ -1,12 +1,24 @@
 #pragma once
 
-//#include <vector>
 //#include "Piece.h"
-#include "Square.h"
+#include "King.h"
+#include "Queen.h"
+#include "Rook.h"
+#include "Bishop.h"
+#include "Knight.h"
+#include "Pawn.h"
 
-class Square;
+
 class Piece;
+/*
+class King;
+class Queen;
+class Rook;
+class Bishop;
+class Knight;
+class Pawn;
 enum Color;
+*/
 
 using namespace std;
 
@@ -14,23 +26,22 @@ class GameStatus
 {
 	
 private:
-	vector<vector<Square>> board;
+	vector<vector<Piece*>> board;
 	double rating;
-	Color currentPlayer;	
+	Color currentPlayer;
 
 public:
 	GameStatus();
 	GameStatus(GameStatus& otherBoard);
 	~GameStatus();
-
+	
 	void startSetup();
 	bool isChecked();
 	
-	vector<vector<Square>>& getBoard();
+	vector<vector<Piece*>>& getBoard();
 
 	list<GameStatus> generateMoves();
 
-	bool isControlledByWhite(int x, int y);
-	bool isControlledByBlack(int x, int y);
+	Color getCurrentPlayer();
 };
 
