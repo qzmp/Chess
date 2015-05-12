@@ -1,51 +1,32 @@
 #include "Movement.h"
 
-
-void Movement::moveUp(vector<vector<Piece*>> & board, int x, int y)
+Movement::Movement(Point& startPoint, Point& endPoint)
 {
-	board[y - 1][x] = (board[y][x]);
-	board[y][x] = nullptr;
+	this->startPoint = startPoint;
+	this->endPoint = endPoint;
 }
 
-void Movement::moveDown(vector<vector<Piece*>> & board, int x, int y)
+Movement::~Movement()
 {
-	board[y + 1][x] = board[y][x];
-	board[y][x] = nullptr;
+
 }
 
-void Movement::moveRight(vector<vector<Piece*>> & board, int x, int y)
+Point& Movement::getStartPoint()
 {
-	board[y][x + 1] = board[y][x];
-	board[y][x] = nullptr;
+	return this->startPoint;
 }
 
-void Movement::moveLeft(vector<vector<Piece*>> & board, int x, int y)
+void Movement::setStartPoint(Point& p)
 {
-	board[y][x - 1] = board[y][x];
-	board[y][x] = nullptr;
+	this->startPoint = startPoint;
 }
 
-void Movement::moveUpRight(vector<vector<Piece*>> & board, int x, int y)
+Point& Movement::getEndPoint()
 {
-	board[y - 1][x + 1] = board[y][x];
-	board[y][x] = nullptr;
+	return this->endPoint;
 }
 
-void Movement::moveUpLeft(vector<vector<Piece*>> & board, int x, int y)
+void Movement::setEndPoint(Point& p)
 {
-	board[y - 1][x - 1] = board[y][x];
-	board[y][x] = nullptr;
+	this->endPoint = endPoint;
 }
-
-void Movement::moveDownRight(vector<vector<Piece*>> & board, int x, int y)
-{
-	board[y + 1][x + 1] = board[y][x];
-	board[y][x] = nullptr;
-}
-
-void Movement::moveDownLeft(vector<vector<Piece*>> & board, int x, int y)
-{
-	board[y + 1][x - 1] = board[y][x];
-	board[y][x] = nullptr;
-}
-

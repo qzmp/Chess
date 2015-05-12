@@ -52,9 +52,9 @@ vector<vector<Piece*>>& GameStatus::getBoard()
 	return board;
 }
 
-list<GameStatus> GameStatus::generateMoves()
+list<Movement> GameStatus::generateMoves()
 {
-	list<GameStatus> moves;
+	list<Movement> moves;
 
 	for (int i = 0; i < 8; i++)
 	{

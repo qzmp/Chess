@@ -3,6 +3,7 @@
 #include "GameStatus.h"
 
 class GameStatus;
+class Movement;
 
 class King :
 	public Piece
@@ -11,6 +12,6 @@ public:
 	King(Color color);
 	~King();
 
-	list<GameStatus> generateMoves(GameStatus& currentStatus, int x, int y);
+	list<Movement> generateMoves(GameStatus& currentStatus, int x, int y);
 };
 

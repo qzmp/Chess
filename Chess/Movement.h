@@ -1,22 +1,22 @@
 #pragma once
 
-#include "GameStatus.h"
+#include "Point.h"
 
 class Movement
 {
+private:
+	Point startPoint;
+	Point endPoint;
 public:
 
-	static void moveUp(vector<vector<Piece*>> & board, int x, int y);
-	static void moveDown(vector<vector<Piece*>> & board, int x, int y);
-	static void moveRight(vector<vector<Piece*>> & board, int x, int y);
-	static void moveLeft(vector<vector<Piece*>> & board, int x, int y);
+	Movement(Point& startPoint, Point& endPoint);
+	~Movement();
 
-	static void moveUpLeft(vector<vector<Piece*>> & board, int x, int y);
-	static void moveUpRight(vector<vector<Piece*>> & board, int x, int y);
-	static void moveDownLeft(vector<vector<Piece*>> & board, int x, int y);
-	static void moveDownRight(vector<vector<Piece*>> & board, int x, int y);
+	Point& getStartPoint();
+	void setStartPoint(Point& p);
 
-
+	Point& getEndPoint();
+	void setEndPoint(Point& p);
 
 };
 

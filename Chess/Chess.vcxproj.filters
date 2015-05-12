@@ -54,6 +54,9 @@
     <ClInclude Include="Rook.h">
       <Filter>Header Files\Pieces</Filter>
     </ClInclude>
+    <ClInclude Include="Point.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Rating.cpp">
@@ -88,6 +91,9 @@
     </ClCompile>
     <ClCompile Include="Rook.cpp">
       <Filter>Source Files\Pieces</Filter>
+    </ClCompile>
+    <ClCompile Include="Point.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

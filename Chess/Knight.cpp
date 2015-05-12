@@ -10,6 +10,6 @@ Knight::~Knight()
 {
 }
 
-list<GameStatus> Knight::generateMoves(GameStatus& currentStatus, int x, int y){
-	return list<GameStatus>();
+list<Movement> Knight::generateMoves(GameStatus& currentStatus, int x, int y){
+	return list<Movement>();
 }

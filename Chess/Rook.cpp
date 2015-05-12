@@ -10,6 +10,6 @@ Rook::~Rook()
 {
 }
 
-list<GameStatus> Rook::generateMoves(GameStatus& currentStatus, int x, int y){
-	return list<GameStatus>();
+list<Movement> Rook::generateMoves(GameStatus& currentStatus, int x, int y){
+	return list<Movement>();
 }

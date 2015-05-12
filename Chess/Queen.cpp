@@ -10,6 +10,6 @@ Queen::~Queen()
 {
 }
 
-list<GameStatus> Queen::generateMoves(GameStatus& currentStatus, int x, int y){
-	return list<GameStatus>();
+list<Movement> Queen::generateMoves(GameStatus& currentStatus, int x, int y){
+	return list<Movement>();
 }

@@ -10,6 +10,6 @@ King::~King()
 {
 }
 
-list<GameStatus> King::generateMoves(GameStatus& currentStatus, int x, int y){
-	return list<GameStatus>();
+list<Movement> King::generateMoves(GameStatus& currentStatus, int x, int y){
+	return list<Movement>();
 }

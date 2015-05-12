@@ -1,6 +1,6 @@
 #pragma once
 
-//#include "Piece.h"
+#include "Movement.h"
 #include "King.h"
 #include "Queen.h"
 #include "Rook.h"
@@ -40,7 +40,7 @@ public:
 	
 	vector<vector<Piece*>>& getBoard();
 
-	list<GameStatus> generateMoves();
+	list<Movement> generateMoves();
 
 	Color getCurrentPlayer();
 };
