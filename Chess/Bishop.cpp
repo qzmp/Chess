@@ -10,7 +10,6 @@ Bishop::~Bishop()
 {
 }
 
-list<GameStatus> Piece::generateMoves(GameStatus& currentStatus, int x, int y)
-{
-
+list<GameStatus> Bishop::generateMoves(GameStatus& currentStatus, int x, int y){
+	return list<GameStatus>();
 }

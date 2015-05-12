@@ -2,7 +2,6 @@
 
 #include <vector>
 #include <list>
-#include "GameStatus.h"
 
 class GameStatus;
 

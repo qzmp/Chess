@@ -10,3 +10,7 @@ Pawn::Pawn(Color color) : Piece(color)
 Pawn::~Pawn()
 {
 }
+
+list<GameStatus> Pawn::generateMoves(GameStatus& currentStatus, int x, int y){
+	return list<GameStatus>();
+}

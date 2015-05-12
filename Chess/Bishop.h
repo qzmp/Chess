@@ -1,8 +1,8 @@
 #pragma once
 #include "Piece.h"
+#include "GameStatus.h"
 
-class Piece;
-enum Color;
+class GameStatus;
 
 class Bishop :
 	public Piece

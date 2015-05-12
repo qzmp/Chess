@@ -10,7 +10,7 @@
 
 
 class Piece;
-/*
+
 class King;
 class Queen;
 class Rook;
@@ -18,7 +18,7 @@ class Bishop;
 class Knight;
 class Pawn;
 enum Color;
-*/
+
 
 using namespace std;
 
