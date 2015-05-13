@@ -9,9 +9,9 @@ class Queen :
 	public Piece
 {
 public:
-	Queen(Color color);
+	Queen(Color color, int x, int y);
 	~Queen();
 
-	list<Movement> generateMoves(GameStatus& currentStatus, int x, int y);
+	list<Movement> generateMoves(GameStatus& currentStatus);
 };
 

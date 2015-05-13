@@ -9,9 +9,9 @@ class Bishop :
 	public Piece
 {
 public:
-	Bishop(Color color);
+	Bishop(Color color, int x, int y);
 	~Bishop();
 
-	list<Movement> generateMoves(GameStatus& currentStatus, int x, int y);
+	list<Movement> generateMoves(GameStatus& currentStatus);
 };
 

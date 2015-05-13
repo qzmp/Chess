@@ -9,8 +9,8 @@ class Rook :
 	public Piece
 {
 public:
-	Rook(Color color);
+	Rook(Color color, int x, int y);
 	~Rook();
 
-	list<Movement> generateMoves(GameStatus& currentStatus, int x, int y);
+	list<Movement> generateMoves(GameStatus& currentStatus);
 };

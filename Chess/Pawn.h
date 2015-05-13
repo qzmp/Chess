@@ -9,9 +9,9 @@ class Pawn :
 	public Piece
 {
 public:
-	Pawn(Color color);
+	Pawn(Color color, int x, int y);
 	~Pawn();
 
-	list<Movement> generateMoves(GameStatus& currentStatus, int x, int y);
+	list<Movement> generateMoves(GameStatus& currentStatus);
 };
 

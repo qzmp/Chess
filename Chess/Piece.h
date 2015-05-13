@@ -2,6 +2,7 @@
 
 #include <vector>
 #include <list>
+#include "Point.h"
 
 class Movement;
 class GameStatus;
@@ -19,10 +20,15 @@ protected:
 	double value;
 	Color color;
 
+	Point location;
+
 public:
-	Piece(Color color);
-	virtual list<Movement> generateMoves(GameStatus& currentStatus, int x, int y) = 0;
+	Piece(Color color, int x, int y);
+	virtual list<Movement> generateMoves(GameStatus& currentStatus) = 0;
 	Color getColor();
 	void setColor(Color color);
 	double getValue();
+
+	Point& getLocation();
+	void setLocation(int x, int y);
 };

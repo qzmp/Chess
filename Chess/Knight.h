@@ -9,9 +9,9 @@ class Knight :
 	public Piece
 {
 public:
-	Knight(Color color);
+	Knight(Color color, int x, int y);
 	~Knight();
 
-	list<Movement> generateMoves(GameStatus& currentStatus, int x, int y);
+	list<Movement> generateMoves(GameStatus& currentStatus);
 };
 
