@@ -15,4 +15,6 @@ public:
 	list<Movement> generateMoves(GameStatus& currentStatus);
 
 	PieceType getPieceType();
+
+	int getValue();
 };

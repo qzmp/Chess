@@ -3,6 +3,21 @@
 
 King::King(Color color, int x, int y) : Piece(color, x, y)
 {
+	
+	pieceSquareTable =
+	{ { -30, -40, -40, -50, -50, -40, -40, -30 },
+	{ -30, -40, -40, -50, -50, -40, -40, -30 },
+	{ -30, -40, -40, -50, -50, -40, -40, -30 },
+	{ -30, -40, -40, -50, -50, -40, -40, -30 },
+	{ -20, -30, -30, -40, -40, -30, -30, -20 },
+	{ -10, -20, -20, -20, -20, -20, -20, -10 },
+	{ 20, 20, 0, 0, 0, 0, 20, 20 },
+	{ 20, 30, 10, 0, 0, 10, 30, 20 } };
+
+	if (color == Black){
+		reverse(pieceSquareTable.begin(), pieceSquareTable.end());
+	}
+	
 }
 
 
@@ -234,7 +249,6 @@ bool King::isCheckedVertically(GameStatus& currentStatus)
 				return true;
 			}
 		}
-		checkedX = checkedX;
 		checkedY = checkedY - 1;
 		while (currentStatus.canPlace(checkedX, checkedY, this->color))
 		{
@@ -246,7 +260,6 @@ bool King::isCheckedVertically(GameStatus& currentStatus)
 					return true;
 				}
 			}
-			checkedX = checkedX;
 			checkedY = checkedY - 1;
 		}
 	}
@@ -264,7 +277,6 @@ bool King::isCheckedVertically(GameStatus& currentStatus)
 				return true;
 			}
 		}
-		checkedX = checkedX;
 		checkedY = checkedY + 1;
 		while (currentStatus.canPlace(checkedX, checkedY, this->color))
 		{
@@ -276,7 +288,6 @@ bool King::isCheckedVertically(GameStatus& currentStatus)
 					return true;
 				}
 			}
-			checkedX = checkedX;
 			checkedY = checkedY + 1;
 		}
 	}
@@ -305,7 +316,6 @@ bool King::isCheckedHorizontally(GameStatus& currentStatus)
 			}
 		}
 		checkedX = checkedX - 1;
-		checkedY = checkedY;
 		while (currentStatus.canPlace(checkedX, checkedY, this->color))
 		{
 			if (currentStatus.isOccupied(checkedX, checkedY))
@@ -317,7 +327,6 @@ bool King::isCheckedHorizontally(GameStatus& currentStatus)
 				}
 			}
 			checkedX = checkedX - 1;
-			checkedY = checkedY;
 		}
 	}
 
@@ -335,7 +344,6 @@ bool King::isCheckedHorizontally(GameStatus& currentStatus)
 			}
 		}
 		checkedX = checkedX + 1;
-		checkedY = checkedY;
 		while (currentStatus.canPlace(checkedX, checkedY, this->color))
 		{
 			if (currentStatus.isOccupied(checkedX, checkedY))
@@ -347,7 +355,6 @@ bool King::isCheckedHorizontally(GameStatus& currentStatus)
 				}
 			}
 			checkedX = checkedX + 1;
-			checkedY = checkedY;
 		}
 	}
 	return false;
@@ -468,4 +475,9 @@ bool King::isChecked(GameStatus& currentStatus)
 Piece::PieceType King::getPieceType()
 {
 	return PieceType::King;
+}
+
+int King::getValue()
+{
+	return 20000 + pieceSquareTable[location.getY()][location.getY()];
 }

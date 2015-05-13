@@ -16,11 +16,6 @@ void Piece::setColor(Color color)
 	this->color = color;
 }
 
-double Piece::getValue()
-{
-	return this->value;
-}
-
 Point& Piece::getLocation()
 {
 	return this->location;
@@ -30,3 +25,4 @@ void Piece::setLocation(int x, int y)
 {
 	this->location = Point(x, y);
 }
+

@@ -2,6 +2,8 @@
 
 #include <vector>
 #include <list>
+#include <algorithm>
+
 #include "Point.h"
 
 class Movement;
@@ -27,7 +29,8 @@ protected:
 		Pawn
 	};
 
-	double value;
+	vector<vector<int>> pieceSquareTable;
+
 	Color color;
 
 	Point location;
@@ -37,7 +40,7 @@ public:
 	virtual list<Movement> generateMoves(GameStatus& currentStatus) = 0;
 	Color getColor();
 	void setColor(Color color);
-	double getValue();
+	virtual int getValue() = 0;
 
 	Point& getLocation();
 	void setLocation(int x, int y);

@@ -28,7 +28,7 @@ class GameStatus
 private:
 	vector<vector<Piece*>> board;
 	list<Piece*> pieces;
-	double rating;
+	int rating;
 	Color currentPlayer;
 
 public:
@@ -49,5 +49,7 @@ public:
 	bool isOccupied(int x, int y);
 	bool isColor(int x, int y, Color color);
 	bool canPlace(int x, int y, Color color);
+
+	int rate();
 };
 

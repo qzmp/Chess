@@ -3,6 +3,19 @@
 
 Rook::Rook(Color color, int x, int y) : Piece(color, x, y)
 {
+	pieceSquareTable =
+	{ { 0, 0, 0, 0, 0, 0, 0, 0 },
+	{ 5, 10, 10, 10, 10, 10, 10, 5 },
+	{ -5, 0, 0, 0, 0, 0, 0, -5 },
+	{ -5, 0, 0, 0, 0, 0, 0, -5 },
+	{ -5, 0, 0, 0, 0, 0, 0, -5 },
+	{ -5, 0, 0, 0, 0, 0, 0, -5 },
+	{ -5, 0, 0, 0, 0, 0, 0, -5 },
+	{ 0, 0, 0, 5, 5, 0, 0, 0 } };
+
+	if (color == Black){
+		reverse(pieceSquareTable.begin(), pieceSquareTable.end());
+	}
 }
 
 
@@ -78,4 +91,9 @@ list<Movement> Rook::generateMoves(GameStatus& currentStatus){
 Piece::PieceType Rook::getPieceType()
 {
 	return PieceType::Rook;
+}
+
+int Rook::getValue()
+{
+	return 500 + pieceSquareTable[location.getY()][location.getY()];
 }

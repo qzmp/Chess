@@ -3,7 +3,19 @@
 
 Pawn::Pawn(Color color, int x, int y) : Piece(color, x, y)
 {
-	this->value = 1;
+	pieceSquareTable =
+	{ { 0, 0, 0, 0, 0, 0, 0, 0 },
+	{ 50, 50, 50, 50, 50, 50, 50, 50 },
+	{ 10, 10, 20, 30, 30, 20, 10, 10 },
+	{ 5, 5, 10, 25, 25, 10, 5, 5 },
+	{ 0, 0, 0, 20, 20, 0, 0, 0 },
+	{ 5, -5, -10, 0, 0, -10, -5, 5 },
+	{ 5, 10, 10, -20, -20, 10, 10, 5 },
+	{ 0, 0, 0, 0, 0, 0, 0, 0 } };
+
+	if (color == Black){
+		reverse(pieceSquareTable.begin(), pieceSquareTable.end());
+	}
 }
 
 
@@ -103,4 +115,9 @@ list<Movement> Pawn::generateMoves(GameStatus& currentStatus){
 Piece::PieceType Pawn::getPieceType()
 {
 	return PieceType::Pawn;
+}
+
+int Pawn::getValue()
+{
+	return 100 + pieceSquareTable[location.getY()][location.getY()];
 }

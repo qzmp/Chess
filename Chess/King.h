@@ -22,5 +22,7 @@ public:
 	bool isChecked(GameStatus& currentStatus);
 
 	PieceType getPieceType();
+
+	int getValue();
 };
 

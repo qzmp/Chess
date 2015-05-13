@@ -3,6 +3,19 @@
 
 Bishop::Bishop(Color color, int x, int y) : Piece(color, x, y)
 {
+	pieceSquareTable =
+	{ { -20, -10, -10, -10, -10, -10, -10, -20 },
+	{ -10, 0, 0, 0, 0, 0, 0, -10 },
+	{ -10, 0, 5, 10, 10, 5, 0, -10 },
+	{ -10, 5, 5, 10, 10, 5, 5, -10 },
+	{ -10, 0, 10, 10, 10, 10, 0, -10 },
+	{ -10, 10, 10, 10, 10, 10, 10, -10 },
+	{ -10, 5, 0, 0, 0, 0, 5, -10 },
+	{ -20, -10, -10, -10, -10, -10, -10, -20 } };
+
+	if (color == Black){
+		reverse(pieceSquareTable.begin(), pieceSquareTable.end());
+	}
 }
 
 
@@ -83,4 +96,8 @@ list<Movement> Bishop::generateMoves(GameStatus& currentStatus){
 Piece::PieceType Bishop::getPieceType()
 {
 	return PieceType::Bishop;
+}
+
+int Bishop::getValue(){
+	return 330 + pieceSquareTable[location.getY()][location.getY()];
 }

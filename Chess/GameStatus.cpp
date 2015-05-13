@@ -95,3 +95,13 @@ bool GameStatus::canPlace(int x, int y, Color color)
 {
 	return (isAvailable(x, y) && (!isOccupied(x, y) || !isColor(x, y, color)));
 }
+
+int GameStatus::rate()
+{
+	int rating = 0;
+	for (list<Piece*>::iterator it = pieces.begin(); it != pieces.end(); it++)
+	{
+		rating += (*it)->getColor() == currentPlayer ? (*it)->getValue() : -(*it)->getValue();
+	}
+	return this->rating = rating;
+}

@@ -3,6 +3,19 @@
 
 Queen::Queen(Color color, int x, int y) : Piece(color, x, y)
 {
+	pieceSquareTable =
+	{ { -20, -10, -10, -5, -5, -10, -10, -20 },
+	{-10, 0, 0, 0, 0, 0, 0, -10},
+	{ -10, 0, 5, 5, 5, 5, 0, -10 },
+	{ -5, 0, 5, 5, 5, 5, 0, -5 },
+	{ 0, 0, 5, 5, 5, 5, 0, -5 },
+	{ -10, 5, 5, 5, 5, 5, 0, -10 },
+	{ -10, 0, 5, 0, 0, 0, 0, -10 },
+	{ -20, -10, -10, -5, -5, -10, -10, -20 } };
+
+	if (color == Black){
+		reverse(pieceSquareTable.begin(), pieceSquareTable.end());
+	}
 }
 
 
@@ -138,4 +151,8 @@ list<Movement> Queen::generateMoves(GameStatus& currentStatus){
 Piece::PieceType Queen::getPieceType()
 {
 	return PieceType::Queen;
+}
+int Queen::getValue()
+{
+	return 900 + pieceSquareTable[location.getY()][location.getY()];
 }
