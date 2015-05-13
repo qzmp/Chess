@@ -13,5 +13,7 @@ public:
 	~Pawn();
 
 	list<Movement> generateMoves(GameStatus& currentStatus);
+
+	PieceType getPieceType();
 };
 

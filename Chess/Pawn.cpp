@@ -99,3 +99,8 @@ list<Movement> Pawn::generateMoves(GameStatus& currentStatus){
 	
 	return moves;
 }
+
+Piece::PieceType Pawn::getPieceType()
+{
+	return PieceType::Pawn;
+}

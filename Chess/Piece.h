@@ -17,6 +17,16 @@ enum Color{
 class Piece
 {
 protected:
+
+	enum PieceType{
+		King,
+		Queen,
+		Rook,
+		Bishop,
+		Knight,
+		Pawn
+	};
+
 	double value;
 	Color color;
 
@@ -31,4 +41,6 @@ public:
 
 	Point& getLocation();
 	void setLocation(int x, int y);
+
+	virtual PieceType getPieceType() = 0;
 };

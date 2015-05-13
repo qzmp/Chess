@@ -82,3 +82,8 @@ list<Movement> Knight::generateMoves(GameStatus& currentStatus){
 
 	return moves;
 }
+
+Piece::PieceType Knight::getPieceType()
+{
+	return PieceType::Knight;
+}

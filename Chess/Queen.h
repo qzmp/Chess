@@ -13,5 +13,7 @@ public:
 	~Queen();
 
 	list<Movement> generateMoves(GameStatus& currentStatus);
+
+	PieceType getPieceType();
 };
 

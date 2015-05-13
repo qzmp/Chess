@@ -19,38 +19,63 @@ list<Movement> Rook::generateMoves(GameStatus& currentStatus){
 	//top
 	int checkedX = x;
 	int checkedY = y - 1;
-	while (currentStatus.canPlace(checkedX, checkedY, this->color))
+	bool captured = false;
+	while (currentStatus.canPlace(checkedX, checkedY, this->color) && !captured)
 	{
 		moves.push_back(Movement(location, Point(checkedX, checkedY)));
+		if (currentStatus.isOccupied(checkedX, checkedY))
+		{
+			captured = true;
+		}
 		checkedY = checkedY - 1;
 	}
 
 	//right
 	checkedX = x + 1;
 	checkedY = y;
-	while (currentStatus.canPlace(checkedX, checkedY, this->color))
+	captured = false;
+	while (currentStatus.canPlace(checkedX, checkedY, this->color) && !captured)
 	{
 		moves.push_back(Movement(location, Point(checkedX, checkedY)));
+		if (currentStatus.isOccupied(checkedX, checkedY))
+		{
+			captured = true;
+		}
 		checkedX = checkedX + 1;
 	}
 
 	//bottom
 	checkedX = x;
 	checkedY = y + 1;
-	while (currentStatus.canPlace(checkedX, checkedY, this->color))
+	captured = false;
+	while (currentStatus.canPlace(checkedX, checkedY, this->color) && !captured)
 	{
 		moves.push_back(Movement(location, Point(checkedX, checkedY)));
+		if (currentStatus.isOccupied(checkedX, checkedY))
+		{
+			captured = true;
+		}
 		checkedY = checkedY + 1;
 	}
 
 	//left
 	checkedX = x - 1;
 	checkedY = y;
-	while (currentStatus.canPlace(checkedX, checkedY, this->color))
+	captured = false;
+	while (currentStatus.canPlace(checkedX, checkedY, this->color) && !captured)
 	{
 		moves.push_back(Movement(location, Point(checkedX, checkedY)));
+		if (currentStatus.isOccupied(checkedX, checkedY))
+		{
+			captured = true;
+		}
 		checkedX = checkedX - 1;
 	}
 
 	return moves;
+}
+
+Piece::PieceType Rook::getPieceType()
+{
+	return PieceType::Rook;
 }

@@ -13,5 +13,7 @@ public:
 	~Knight();
 
 	list<Movement> generateMoves(GameStatus& currentStatus);
+
+	PieceType getPieceType();
 };
 

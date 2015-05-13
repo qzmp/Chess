@@ -13,5 +13,7 @@ public:
 	~Bishop();
 
 	list<Movement> generateMoves(GameStatus& currentStatus);
+
+	PieceType getPieceType();
 };
 
