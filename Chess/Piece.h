@@ -16,18 +16,18 @@ enum Color{
 	White
 };
 
+enum PieceType{
+	King,
+	Queen,
+	Rook,
+	Bishop,
+	Knight,
+	Pawn
+};
+
 class Piece
 {
 protected:
-
-	enum PieceType{
-		King,
-		Queen,
-		Rook,
-		Bishop,
-		Knight,
-		Pawn
-	};
 
 	vector<vector<int>> pieceSquareTable;
 
@@ -36,6 +36,7 @@ protected:
 	Point location;
 
 public:
+
 	Piece(Color color, int x, int y);
 	virtual list<Movement> generateMoves(GameStatus& currentStatus) = 0;
 	Color getColor();

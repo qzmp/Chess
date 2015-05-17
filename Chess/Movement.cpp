@@ -1,4 +1,7 @@
 #include "Movement.h"
+Movement::Movement(){
+
+}
 
 Movement::Movement(Point& startPoint, Point& endPoint)
 {
