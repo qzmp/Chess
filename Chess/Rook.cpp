@@ -88,7 +88,7 @@ list<Movement> Rook::generateMoves(GameStatus& currentStatus){
 	return moves;
 }
 
-PieceType Rook::getPieceType()
+Piece::PieceType Rook::getPieceType()
 {
 	return PieceType::Rook;
 }

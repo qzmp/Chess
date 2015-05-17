@@ -6,12 +6,7 @@ GameStatus::GameStatus()
 	board.resize(8);
 	for (int i = 0; i < 8; i++)
 		board[i].resize(8);
-}
-
-GameStatus::GameStatus(GameStatus& otherGameStatus)
-{
-	this->board = otherGameStatus.getBoard();
-	this->currentPlayer = otherGameStatus.currentPlayer;
+	currentPlayer = Black;
 }
 
 GameStatus::~GameStatus()
@@ -19,31 +14,36 @@ GameStatus::~GameStatus()
 }
 
 void GameStatus::startSetup(){
-	
-	board[0][0] = new Rook(Black, 0, 0);
-	board[0][1] = new Knight(Black, 1, 0);
-	board[0][2] = new Bishop(Black, 2, 0);
-	board[0][3] = new Queen(Black, 3, 0);
-	board[0][4] = new King(Black, 4, 0);
-	board[0][5] = new Bishop(Black, 5, 0);
-	board[0][6] = new Knight(Black, 6, 0);
-	board[0][7] = new Rook(Black, 7, 0);
+	this->board = vector<vector<Piece*>>();
+	this->pieces = list<Piece*>();
+	board.resize(8);
+	for (int i = 0; i < 8; i++)
+		board[i].resize(8);
+
+	board[0][0] = new Rook(White, 0, 0);
+	board[0][1] = new Knight(White, 1, 0);
+	board[0][2] = new Bishop(White, 2, 0);
+	board[0][3] = new Queen(White, 3, 0);
+	board[0][4] = new King(White, 4, 0);
+	board[0][5] = new Bishop(White, 5, 0);
+	board[0][6] = new Knight(White, 6, 0);
+	board[0][7] = new Rook(White, 7, 0);
 	for (int i = 0; i < 8; i++)
 	{
-		board[1][i] = new Pawn(Black, i, 1);
+		board[1][i] = new Pawn(White, i, 1);
 	}
 
-	board[7][0] = new Rook(White, 0, 7);
-	board[7][1] = new Knight(White, 1, 7);
-	board[7][2] = new Bishop(White, 2, 7);
-	board[7][3] = new Queen(White, 3, 7);
-	board[7][4] = new King(White, 4, 7);
-	board[7][5] = new Bishop(White, 5, 7);
-	board[7][6] = new Knight(White, 6, 7);
-	board[7][7] = new Rook(White, 7, 7);
+	board[7][0] = new Rook(Black, 0, 7);
+	board[7][1] = new Knight(Black, 1, 7);
+	board[7][2] = new Bishop(Black, 2, 7);
+	board[7][3] = new Queen(Black, 3, 7);
+	board[7][4] = new King(Black, 4, 7);
+	board[7][5] = new Bishop(Black, 5, 7);
+	board[7][6] = new Knight(Black, 6, 7);
+	board[7][7] = new Rook(Black, 7, 7);
 	for (int i = 0; i < 8; i++)
 	{
-		board[6][i] = new Pawn(White, i, 6);
+		board[6][i] = new Pawn(Black, i, 6);
 	}
 
 	for (int i = 0; i < 8; i++)
@@ -73,7 +73,11 @@ list<Movement> GameStatus::generateMoves()
 
 	for (list<Piece*>::iterator it = pieces.begin(); it != pieces.end(); it++)
 	{
-		moves.splice(moves.end(), (*it)->generateMoves(*this));
+		if ((*it)->getColor() == currentPlayer)
+		{
+			moves.splice(moves.end(), (*it)->generateMoves(*this));
+		}
+		
 	}
 	return moves;
 }
@@ -116,13 +120,13 @@ int GameStatus::rate()
 	{
 		rating += (*it)->getColor() == currentPlayer ? (*it)->getValue() : -(*it)->getValue();
 	}
-	return this->rating = rating;
+	return rating;
 }
 
 Piece* GameStatus::makeMove(Movement& move, bool& isValid)
 {
 	
-	if (isOccupied(move.getEndPoint) && getPiece(move.getEndPoint).getPieceType == Piece::PieceType::King)
+	if (isOccupied(move.getEndPoint()) && getPiece(move.getEndPoint()).getPieceType() == Piece::PieceType::King)
 	{
 		isValid = false;
 		return nullptr;
@@ -132,7 +136,8 @@ Piece* GameStatus::makeMove(Movement& move, bool& isValid)
 		Piece* movedPiece = board[move.getStartPoint().getY()][move.getStartPoint().getX()];
 		Piece* capturedPiece = board[move.getEndPoint().getY()][move.getEndPoint().getX()];
 
-		board[move.getEndPoint().getY()][move.getEndPoint().getX()]->setLocation(move.getStartPoint().getX, move.getStartPoint().getY());
+		board[move.getStartPoint().getY()][move.getStartPoint().getX()]->setLocation(move.getEndPoint().getX(), move.getEndPoint().getY());
+
 		board[move.getEndPoint().getY()][move.getEndPoint().getX()] = board[move.getStartPoint().getY()][move.getStartPoint().getX()];
 		board[move.getStartPoint().getY()][move.getStartPoint().getX()] = nullptr;
 		if (capturedPiece != nullptr)
@@ -144,6 +149,7 @@ Piece* GameStatus::makeMove(Movement& move, bool& isValid)
 		{
 			board[move.getStartPoint().getY()][move.getStartPoint().getX()] = movedPiece;
 			board[move.getEndPoint().getY()][move.getEndPoint().getX()] = capturedPiece;
+			movedPiece->setLocation(move.getStartPoint().getX(), move.getStartPoint().getY());
 			isValid = false;
 			return nullptr;
 		}
@@ -156,7 +162,7 @@ Piece* GameStatus::makeMove(Movement& move, bool& isValid)
 
 void GameStatus::remakeMove(Movement& move, Piece* capturedPiece)
 {
-	board[move.getStartPoint().getY()][move.getStartPoint().getX()]->setLocation(move.getEndPoint().getX, move.getEndPoint().getY());
+	board[move.getEndPoint().getY()][move.getEndPoint().getX()]->setLocation(move.getStartPoint().getX(), move.getStartPoint().getY());
 
 	board[move.getStartPoint().getY()][move.getStartPoint().getX()] = board[move.getEndPoint().getY()][move.getEndPoint().getX()];
 	board[move.getEndPoint().getY()][move.getEndPoint().getX()] = capturedPiece;
@@ -206,8 +212,8 @@ bool GameStatus::isAttackedDiagonally(Piece& piece)
 	}
 
 	//top right
-	int checkedX = x + 1;
-	int checkedY = y - 1;
+	checkedX = x + 1;
+	checkedY = y - 1;
 	if (canPlace(checkedX, checkedY, piece.getColor()))
 	{
 		if (isOccupied(checkedX, checkedY))
@@ -237,8 +243,8 @@ bool GameStatus::isAttackedDiagonally(Piece& piece)
 	}
 
 	//bottom right
-	int checkedX = x + 1;
-	int checkedY = y + 1;
+	checkedX = x + 1;
+	checkedY = y + 1;
 	if (canPlace(checkedX, checkedY, piece.getColor()))
 	{
 		if (isOccupied(checkedX, checkedY))
@@ -268,8 +274,8 @@ bool GameStatus::isAttackedDiagonally(Piece& piece)
 	}
 
 	//bottom left
-	int checkedX = x - 1;
-	int checkedY = y + 1;
+	checkedX = x - 1;
+	checkedY = y + 1;
 	if (canPlace(checkedX, checkedY, piece.getColor()))
 	{
 		if (isOccupied(checkedX, checkedY))
@@ -337,8 +343,8 @@ bool GameStatus::isAttackedVertically(Piece& piece)
 	}
 
 	//bottom
-	int checkedX = x;
-	int checkedY = y + 1;
+	checkedX = x;
+	checkedY = y + 1;
 	if (canPlace(checkedX, checkedY, piece.getColor()))
 	{
 		if (isOccupied(checkedX, checkedY))
@@ -363,9 +369,10 @@ bool GameStatus::isAttackedVertically(Piece& piece)
 			checkedY = checkedY + 1;
 		}
 	}
+	return false;
 }
 
-bool GameStatus::isAttackedVertically(Piece& piece)
+bool GameStatus::isAttackedHorizontally(Piece& piece)
 {
 	int x = piece.getLocation().getX();
 	int y = piece.getLocation().getY();
@@ -401,8 +408,8 @@ bool GameStatus::isAttackedVertically(Piece& piece)
 	}
 
 	//right
-	int checkedX = x + 1;
-	int checkedY = y;
+	checkedX = x + 1;
+	checkedY = y;
 	if (canPlace(checkedX, checkedY, piece.getColor()))
 	{
 		if (isOccupied(checkedX, checkedY))
@@ -541,26 +548,33 @@ bool GameStatus::isChecked(Piece& piece)
 	return (isAttackedByKnight(piece) || isAttackedDiagonally(piece) || isAttackedHorizontally(piece) || isAttackedVertically(piece));
 }
 
-Movement GameStatus::minMax()
+Movement& GameStatus::minMax()
 {
 	Movement bestMove;
-	int bestVal = numeric_limits<int>::max();
+	int bestVal = numeric_limits<int>::min();
 	int val;
+	Piece* capturedPiece;
+	bool isValid = true;
 
 	list<Movement> moves = generateMoves();
 	for (Movement& m : moves)
 	{
-		val = minMax(DEPTH - 1, false);
-		if (val > bestVal)
+		capturedPiece = makeMove(m, isValid);
+		if (isValid)
 		{
-			bestVal = val;
-			bestMove = m;
+			val = minMax(DEPTH - 1, numeric_limits<int>::min(), numeric_limits<int>::max(), false);
+			if (val > bestVal)
+			{
+				bestVal = val;
+				bestMove = m;
+			}
+			remakeMove(m, capturedPiece);
 		}
 	}
 	return bestMove;
 }
 
-int GameStatus::minMax(int depth, bool maximizingPlayer)
+int GameStatus::minMax(int depth,int a, int b, bool maximizingPlayer)
 {
 	int val = 0;
 	bool isValid = true;
@@ -582,12 +596,21 @@ int GameStatus::minMax(int depth, bool maximizingPlayer)
 			capturedPiece = makeMove(m, isValid);
 			if (isValid)
 			{
-				val = minMax(depth - 1, !maximizingPlayer);
+				val = minMax(depth - 1, a, b, !maximizingPlayer); 
 				if (bestValue < val)
 				{
 					bestValue = val;
 				}
+				if (a < val)
+				{
+					a = val;
+				}
+
 				remakeMove(m, capturedPiece);
+
+				if (b <= a){
+					break; //dobrze by bylo cos z tym zrobic
+				}
 			}
 		}
 		return bestValue;
@@ -600,12 +623,21 @@ int GameStatus::minMax(int depth, bool maximizingPlayer)
 			capturedPiece = makeMove(m, isValid);
 			if (isValid)
 			{
-				val = minMax(depth - 1, !maximizingPlayer);
+				val = minMax(depth - 1, a, b, !maximizingPlayer);
 				if (bestValue > val)
 				{
 					bestValue = val;
 				}
+				if (b > val)
+				{
+					b = val;
+				}
+
 				remakeMove(m, capturedPiece);
+
+				if (b <= a){
+					break; //dobrze by bylo cos z tym zrobic
+				}
 			}
 		}
 		return bestValue;

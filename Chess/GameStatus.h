@@ -27,13 +27,12 @@ class GameStatus
 {
 	
 private:
-	const int DEPTH = 3;
+	const int DEPTH = 4;
 	vector<vector<Piece*>> board;
 	list<Piece*> pieces;
 	Piece* WhiteKing;
 	Piece* BlackKing;
 
-	int rating;
 	Color currentPlayer;
 
 	bool isAttackedDiagonally(Piece& piece);
@@ -43,7 +42,6 @@ private:
 
 public:
 	GameStatus();
-	GameStatus(GameStatus& otherBoard);
 	~GameStatus();
 	
 	void startSetup();
@@ -70,7 +68,7 @@ public:
 	Piece* makeMove(Movement& move, bool& isValid);
 	void remakeMove(Movement& move, Piece* piece);
 
-	Movement minMax();
-	int minMax(Movement& node, int depth, bool maximizingPlayer);
+	Movement& minMax();
+	int minMax(int depth, int a, int b, bool maximizingPlayer);
 };
 

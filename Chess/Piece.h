@@ -16,15 +16,6 @@ enum Color{
 	White
 };
 
-enum PieceType{
-	King,
-	Queen,
-	Rook,
-	Bishop,
-	Knight,
-	Pawn
-};
-
 class Piece
 {
 protected:
@@ -36,6 +27,16 @@ protected:
 	Point location;
 
 public:
+
+	enum PieceType{
+		King,
+		Queen,
+		Rook,
+		Bishop,
+		Knight,
+		Pawn
+	};
+
 
 	Piece(Color color, int x, int y);
 	virtual list<Movement> generateMoves(GameStatus& currentStatus) = 0;
