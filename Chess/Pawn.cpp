@@ -13,7 +13,7 @@ Pawn::Pawn(Color color, int x, int y) : Piece(color, x, y)
 	{ 5, 10, 10, -20, -20, 10, 10, 5 },
 	{ 0, 0, 0, 0, 0, 0, 0, 0 } };
 
-	if (color == Black){
+	if (color == White){
 		reverse(pieceSquareTable.begin(), pieceSquareTable.end());
 	}
 }
@@ -48,7 +48,7 @@ list<Movement> Pawn::generateMoves(GameStatus& currentStatus){
 		{
 			checkedX = x;
 			checkedY = y - 2;
-			if (!currentStatus.isOccupied(checkedX, checkedY))
+			if (!currentStatus.isOccupied(checkedX, checkedY) && !currentStatus.isOccupied(checkedX, checkedY + 1))
 			{
 				moves.push_back(Movement(location, Point(checkedX, checkedY)));
 			}
@@ -85,7 +85,7 @@ list<Movement> Pawn::generateMoves(GameStatus& currentStatus){
 		{
 			checkedX = x;
 			checkedY = y + 2;
-			if (!currentStatus.isOccupied(checkedX, checkedY))
+			if (!currentStatus.isOccupied(checkedX, checkedY) && !currentStatus.isOccupied(checkedX, checkedY - 1))
 			{
 				moves.push_back(Movement(location, Point(checkedX, checkedY)));
 			}

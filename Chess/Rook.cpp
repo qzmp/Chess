@@ -13,7 +13,7 @@ Rook::Rook(Color color, int x, int y) : Piece(color, x, y)
 	{ -5, 0, 0, 0, 0, 0, 0, -5 },
 	{ 0, 0, 0, 5, 5, 0, 0, 0 } };
 
-	if (color == Black){
+	if (color == White){
 		reverse(pieceSquareTable.begin(), pieceSquareTable.end());
 	}
 }

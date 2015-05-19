@@ -53,8 +53,13 @@ void GameStatus::startSetup(){
 		pieces.push_back(board[6][i]);
 		pieces.push_back(board[7][i]);
 	}
-	BlackKing = board[0][4];
-	WhiteKing = board[7][4];
+	WhiteKing = board[0][4];
+	BlackKing = board[7][4];
+}
+
+void GameStatus::testSetup()
+{
+
 }
 
 vector<vector<Piece*>>& GameStatus::getBoard()
@@ -115,10 +120,12 @@ bool GameStatus::canPlace(int x, int y, Color color)
 
 int GameStatus::rate()
 {
+	Piece* p;
 	int rating = 0;
-	for (list<Piece*>::iterator it = pieces.begin(); it != pieces.end(); it++)
+	for (list<Piece*>::iterator it = pieces.begin(); it != pieces.end(); ++it)
 	{
-		rating += (*it)->getColor() == currentPlayer ? (*it)->getValue() : -(*it)->getValue();
+		p = (*it);
+		rating += (p->getColor() == currentPlayer ? p->getValue() : -p->getValue());
 	}
 	return rating;
 }
@@ -577,7 +584,6 @@ int GameStatus::minMax(int depth,int a, int b, bool maximizingPlayer)
 	int val = 0;
 	bool isValid = true;
 	Piece* capturedPiece;
-	
 
 	if (depth == 0)
 	{
@@ -592,7 +598,6 @@ int GameStatus::minMax(int depth,int a, int b, bool maximizingPlayer)
 	if (maximizingPlayer)
 	{
 		int bestValue = numeric_limits<int>::min();
-
 		while (it != moves.end() && !alphaBetaCut)
 		{
 			capturedPiece = makeMove(*it, isValid);

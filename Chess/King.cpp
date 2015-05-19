@@ -14,7 +14,7 @@ King::King(Color color, int x, int y) : Piece(color, x, y)
 	{ 20, 20, 0, 0, 0, 0, 20, 20 },
 	{ 20, 30, 10, 0, 0, 10, 30, 20 } };
 
-	if (color == Black){
+	if (color == White){
 		reverse(pieceSquareTable.begin(), pieceSquareTable.end());
 	}
 	

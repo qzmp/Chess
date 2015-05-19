@@ -27,7 +27,7 @@ class GameStatus
 {
 	
 private:
-	const int DEPTH = 4;
+	const int DEPTH = 3;
 	vector<vector<Piece*>> board;
 	list<Piece*> pieces;
 	Piece* WhiteKing;
@@ -47,6 +47,7 @@ public:
 	~GameStatus();
 	
 	void startSetup();
+	void testSetup();
 	
 	bool isChecked(Piece& piece);
 	

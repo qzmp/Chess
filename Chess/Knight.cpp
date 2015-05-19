@@ -13,7 +13,7 @@ Knight::Knight(Color color, int x, int y) : Piece(color, x, y)
 	{ -40, -20, 0, 5, 5, 0, -20, -40 },
 	{ -50, -40, -30, -30, -30, -30, -40, -50 } };
 
-	if (color == Black){
+	if (color == White){
 		reverse(pieceSquareTable.begin(), pieceSquareTable.end());
 	}
 }
