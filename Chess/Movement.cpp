@@ -11,9 +11,9 @@ Movement::Movement(Point& startPoint, Point& endPoint)
 
 Movement::Movement(string move)
 {
-	int startX = (move[0] - 'a') - 1;
+	int startX = (move[0] - 'a');
 	int startY = (move[1] - 48) - 1;
-	int endX = (move[2] - 'a') - 1;
+	int endX = (move[2] - 'a');
 	int endY = (move[3] - 48) - 1;
 
 	this->startPoint = Point(startX, startY);

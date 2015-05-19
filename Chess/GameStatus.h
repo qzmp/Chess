@@ -40,6 +40,8 @@ private:
 	bool isAttackedVertically(Piece& piece);
 	bool isAttackedByKnight(Piece& piece);
 
+	Color getMinMaxPlayer(bool maximizing);
+
 public:
 	GameStatus();
 	~GameStatus();
@@ -51,7 +53,7 @@ public:
 	vector<vector<Piece*>>& getBoard();
 	Piece& getPiece(Point& location);
 
-	list<Movement> generateMoves();
+	list<Movement> generateMoves(Color player);
 
 	Movement Move();
 
@@ -70,5 +72,7 @@ public:
 
 	Movement& minMax();
 	int minMax(int depth, int a, int b, bool maximizingPlayer);
+
+	void changePlayer();
 };
 

@@ -33,8 +33,7 @@ list<Movement> Pawn::generateMoves(GameStatus& currentStatus){
 	int checkedX;
 	int checkedY;
 
-	//White
-	if (this->color == White)
+	if (this->color == Black)
 	{
 		//standard move
 		checkedX = x;
@@ -71,7 +70,7 @@ list<Movement> Pawn::generateMoves(GameStatus& currentStatus){
 			moves.push_back(Movement(location, Point(checkedX, checkedY)));
 		}
 	}
-	else //Black
+	else //White
 	{
 		//standard move
 		checkedX = x;

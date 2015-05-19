@@ -6,7 +6,7 @@ GameStatus::GameStatus()
 	board.resize(8);
 	for (int i = 0; i < 8; i++)
 		board[i].resize(8);
-	currentPlayer = Black;
+	currentPlayer = White;
 }
 
 GameStatus::~GameStatus()
@@ -67,13 +67,13 @@ Piece& GameStatus::getPiece(Point& location)
 	return *this->board[location.getY()][location.getX()];
 }
 
-list<Movement> GameStatus::generateMoves()
+list<Movement> GameStatus::generateMoves(Color player)
 {
 	list<Movement> moves;
 
 	for (list<Piece*>::iterator it = pieces.begin(); it != pieces.end(); it++)
 	{
-		if ((*it)->getColor() == currentPlayer)
+		if ((*it)->getColor() == player)
 		{
 			moves.splice(moves.end(), (*it)->generateMoves(*this));
 		}
@@ -147,9 +147,7 @@ Piece* GameStatus::makeMove(Movement& move, bool& isValid)
 
 		if ((movedPiece->getColor() == Black && isChecked(*BlackKing)) || (movedPiece->getColor() == White && isChecked(*WhiteKing)))
 		{
-			board[move.getStartPoint().getY()][move.getStartPoint().getX()] = movedPiece;
-			board[move.getEndPoint().getY()][move.getEndPoint().getX()] = capturedPiece;
-			movedPiece->setLocation(move.getStartPoint().getX(), move.getStartPoint().getY());
+			remakeMove(move, capturedPiece);
 			isValid = false;
 			return nullptr;
 		}
@@ -556,7 +554,7 @@ Movement& GameStatus::minMax()
 	Piece* capturedPiece;
 	bool isValid = true;
 
-	list<Movement> moves = generateMoves();
+	list<Movement> moves = generateMoves(currentPlayer);
 	for (Movement& m : moves)
 	{
 		capturedPiece = makeMove(m, isValid);
@@ -586,14 +584,18 @@ int GameStatus::minMax(int depth,int a, int b, bool maximizingPlayer)
 		return rate();
 	}
 
-	list<Movement> moves = generateMoves();
+	bool alphaBetaCut = false;
+	
+	list<Movement> moves = generateMoves(getMinMaxPlayer(maximizingPlayer));
+	list<Movement>::iterator it = moves.begin();
+
 	if (maximizingPlayer)
 	{
 		int bestValue = numeric_limits<int>::min();
 
-		for (Movement& m : moves)
+		while (it != moves.end() && !alphaBetaCut)
 		{
-			capturedPiece = makeMove(m, isValid);
+			capturedPiece = makeMove(*it, isValid);
 			if (isValid)
 			{
 				val = minMax(depth - 1, a, b, !maximizingPlayer); 
@@ -605,22 +607,24 @@ int GameStatus::minMax(int depth,int a, int b, bool maximizingPlayer)
 				{
 					a = val;
 				}
-
-				remakeMove(m, capturedPiece);
-
-				if (b <= a){
-					break; //dobrze by bylo cos z tym zrobic
-				}
+				remakeMove(*it, capturedPiece);
 			}
+			
+
+			if (b <= a){
+				alphaBetaCut = true;
+			}
+
+			it++;
 		}
 		return bestValue;
 	}
 	else
 	{
 		int bestValue = numeric_limits<int>::max();
-		for (Movement& m : moves)
+		while (it != moves.end() && !alphaBetaCut)
 		{
-			capturedPiece = makeMove(m, isValid);
+			capturedPiece = makeMove(*it, isValid);
 			if (isValid)
 			{
 				val = minMax(depth - 1, a, b, !maximizingPlayer);
@@ -632,14 +636,32 @@ int GameStatus::minMax(int depth,int a, int b, bool maximizingPlayer)
 				{
 					b = val;
 				}
+				remakeMove(*it, capturedPiece);
+			}	
 
-				remakeMove(m, capturedPiece);
-
-				if (b <= a){
-					break; //dobrze by bylo cos z tym zrobic
-				}
+			if (b <= a){
+				alphaBetaCut = true;
 			}
+
+			it++;
 		}
 		return bestValue;
+	}
+}
+
+void GameStatus::changePlayer()
+{
+	currentPlayer = (currentPlayer == Black ? White : Black);
+}
+
+Color GameStatus::getMinMaxPlayer(bool maximizing)
+{
+	if (this->currentPlayer == Black)
+	{
+		return (maximizing ? Black : White);
+	}
+	else
+	{
+		return (maximizing ? White : Black);
 	}
 }
