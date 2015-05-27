@@ -30,8 +30,41 @@ list<Movement> Queen::generateMoves(GameStatus& currentStatus){
 	int y = location.getY();
 
 	//top left
-	int checkedX = x - 1;
-	int checkedY = y - 1;
+	moves.splice(moves.end(), generateMoves(currentStatus, -1, -1));
+
+	//top right
+	moves.splice(moves.end(), generateMoves(currentStatus, 1, -1));
+
+	//bottom right
+	moves.splice(moves.end(), generateMoves(currentStatus, 1, 1));
+
+	//bottom left
+	moves.splice(moves.end(), generateMoves(currentStatus, -1, 1));
+
+	//top
+	moves.splice(moves.end(), generateMoves(currentStatus, 0, -1));
+
+	//right
+	moves.splice(moves.end(), generateMoves(currentStatus, 1, 0));
+
+	//bottom
+	moves.splice(moves.end(), generateMoves(currentStatus, 0, 1));
+
+	//left
+	moves.splice(moves.end(), generateMoves(currentStatus, -1, 0));
+
+	return moves;
+}
+
+list<Movement> Queen::generateMoves(GameStatus& currentStatus, int dirX, int dirY){
+
+	list<Movement> moves;
+
+	int x = location.getX();
+	int y = location.getY();
+
+	int checkedX = x + dirX;
+	int checkedY = y + dirY;
 	bool captured = false;
 	while (currentStatus.canPlace(checkedX, checkedY, this->color) && !captured)
 	{
@@ -40,109 +73,8 @@ list<Movement> Queen::generateMoves(GameStatus& currentStatus){
 		{
 			captured = true;
 		}
-		checkedX = checkedX - 1;
-		checkedY = checkedY - 1;
-	}
-
-	//top right
-	checkedX = x + 1;
-	checkedY = y - 1;
-	captured = false;
-	while (currentStatus.canPlace(checkedX, checkedY, this->color) && !captured)
-	{
-		moves.push_back(Movement(location, Point(checkedX, checkedY)));
-		if (currentStatus.isOccupied(checkedX, checkedY))
-		{
-			captured = true;
-		}
-		checkedX = checkedX + 1;
-		checkedY = checkedY - 1;
-	}
-
-	//bottom right
-	checkedX = x + 1;
-	checkedY = y + 1;
-	captured = false;
-	while (currentStatus.canPlace(checkedX, checkedY, this->color) && !captured)
-	{
-		moves.push_back(Movement(location, Point(checkedX, checkedY)));
-		if (currentStatus.isOccupied(checkedX, checkedY))
-		{
-			captured = true;
-		}
-		checkedX = checkedX + 1;
-		checkedY = checkedY + 1;
-	}
-
-	//bottom left
-	checkedX = x - 1;
-	checkedY = y + 1;
-	captured = false;
-	while (currentStatus.canPlace(checkedX, checkedY, this->color) && !captured)
-	{
-		moves.push_back(Movement(location, Point(checkedX, checkedY)));
-		if (currentStatus.isOccupied(checkedX, checkedY))
-		{
-			captured = true;
-		}
-		checkedX = checkedX - 1;
-		checkedY = checkedY + 1;
-	}
-
-	//top
-	checkedX = x;
-	checkedY = y - 1;
-	captured = false;
-	while (currentStatus.canPlace(checkedX, checkedY, this->color) && !captured)
-	{
-		moves.push_back(Movement(location, Point(checkedX, checkedY)));
-		if (currentStatus.isOccupied(checkedX, checkedY))
-		{
-			captured = true;
-		}
-		checkedY = checkedY - 1;
-	}
-
-	//right
-	checkedX = x + 1;
-	checkedY = y;
-	captured = false;
-	while (currentStatus.canPlace(checkedX, checkedY, this->color) && !captured)
-	{
-		moves.push_back(Movement(location, Point(checkedX, checkedY)));
-		if (currentStatus.isOccupied(checkedX, checkedY))
-		{
-			captured = true;
-		}
-		checkedX = checkedX + 1;
-	}
-
-	//bottom
-	checkedX = x;
-	checkedY = y + 1;
-	captured = false;
-	while (currentStatus.canPlace(checkedX, checkedY, this->color) && !captured)
-	{
-		moves.push_back(Movement(location, Point(checkedX, checkedY)));
-		if (currentStatus.isOccupied(checkedX, checkedY))
-		{
-			captured = true;
-		}
-		checkedY = checkedY + 1;
-	}
-
-	//left
-	checkedX = x - 1;
-	checkedY = y;
-	captured = false;
-	while (currentStatus.canPlace(checkedX, checkedY, this->color) && !captured)
-	{
-		moves.push_back(Movement(location, Point(checkedX, checkedY)));
-		if (currentStatus.isOccupied(checkedX, checkedY))
-		{
-			captured = true;
-		}
-		checkedX = checkedX - 1;
+		checkedX = checkedX + dirX;
+		checkedY = checkedY + dirY;
 	}
 
 	return moves;

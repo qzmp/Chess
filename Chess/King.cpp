@@ -33,64 +33,42 @@ list<Movement> King::generateMoves(GameStatus& currentStatus){
 	int y = location.getY();
 
 	//top left
-	int checkedX = x - 1;
-	int checkedY = y - 1;
-	if (currentStatus.canPlace(checkedX, checkedY, this->color))
-	{
-		moves.push_back(Movement(location, Point(checkedX, checkedY)));
-	}
+	moves.splice(moves.end(), generateMoves(currentStatus, -1, -1));
 
 	//top
-	checkedX = x;
-	checkedY = y - 1;
-	if (currentStatus.canPlace(checkedX, checkedY, this->color))
-	{
-		moves.push_back(Movement(location, Point(checkedX, checkedY)));
-	}
+	moves.splice(moves.end(), generateMoves(currentStatus, 0, -1));
 
 	//top right
-	checkedX = x + 1;
-	checkedY = y - 1;
-	if (currentStatus.canPlace(checkedX, checkedY, this->color))
-	{
-		moves.push_back(Movement(location, Point(checkedX, checkedY)));
-	}
+	moves.splice(moves.end(), generateMoves(currentStatus, 1, -1));
 
 	//right
-	checkedX = x + 1;
-	checkedY = y;
-	if (currentStatus.canPlace(checkedX, checkedY, this->color))
-	{
-		moves.push_back(Movement(location, Point(checkedX, checkedY)));
-	}
+	moves.splice(moves.end(), generateMoves(currentStatus, 1, 0));
 
 	//bottom right
-	checkedX = x + 1;
-	checkedY = y + 1;
-	if (currentStatus.canPlace(checkedX, checkedY, this->color))
-	{
-		moves.push_back(Movement(location, Point(checkedX, checkedY)));
-	}
+	moves.splice(moves.end(), generateMoves(currentStatus, 1, 1));
 
 	//bottom
-	checkedX = x;
-	checkedY = y + 1;
-	if (currentStatus.canPlace(checkedX, checkedY, this->color))
-	{
-		moves.push_back(Movement(location, Point(checkedX, checkedY)));
-	}
+	moves.splice(moves.end(), generateMoves(currentStatus, 0, 1));
 
 	//bottom left
-	checkedX = x - 1;
-	checkedY = y + 1;
-	if (currentStatus.canPlace(checkedX, checkedY, this->color))
-	{
-		moves.push_back(Movement(location, Point(checkedX, checkedY)));
-	}
+	moves.splice(moves.end(), generateMoves(currentStatus, -1, 1));
 
 	//left
-	checkedX = x - 1;
-	checkedY = y;
+	moves.splice(moves.end(), generateMoves(currentStatus, -1, 0));
+
+	return moves;
+}
+
+list<Movement> King::generateMoves(GameStatus& currentStatus, int dirX, int dirY)
+{
+	list<Movement> moves;
+
+	int x = location.getX();
+	int y = location.getY();
+
+	int checkedX = x + dirX;
+	int checkedY = y + dirY;
+
 	if (currentStatus.canPlace(checkedX, checkedY, this->color))
 	{
 		moves.push_back(Movement(location, Point(checkedX, checkedY)));
