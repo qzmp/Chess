@@ -8,14 +8,13 @@ int main()
 {
 	bool isValid = true;
 	GameStatus board = GameStatus();
-	
-	board.startSetup();
-	board.generateMoves(Black);
-	Movement test = Movement("b8a6");
-	cout << test.toString();
+	/*
+	board.testSetup();
+	board.isChecked(*board.WhiteKing);
+	Movement test = Movement("f4e5");
 	board.makeMove(test, isValid);
 	cout << "test";
-	
+	*/
 	
 	Movement bestMove;
 	
@@ -45,10 +44,16 @@ int main()
 			board.startSetup();
 		}
 		else if (Line.substr(0, 23) == "position startpos moves") {
-			string move = Line.substr(Line.length() - 4, Line.length() - 1);
-			bestMove = Movement(move);
-			board.makeMove(bestMove, isValid);
-			board.changePlayer();
+			board.startSetup();
+			int pos = 24;
+			while ((pos + 4) <= Line.length())
+			{
+				string move = Line.substr(pos, 4);
+				bestMove = Movement(move);
+				board.makeValidMove(bestMove);
+				board.changePlayer();
+				pos += 5;
+			}
 		}
 		else if (Line == "stop") {
 			; // nothing to do
@@ -57,9 +62,12 @@ int main()
 			// Received a command like: "go wtime 300000 btime 300000 winc 0 binc 0"
 			bestMove = board.minMax();
 			move = bestMove.toString();
-			board.makeMove(bestMove, isValid);
-			cout << "bestmove " << move << endl;
-			board.changePlayer();
+			if (move != "a1a1")
+			{
+				board.makeMove(bestMove, isValid);
+				cout << "bestmove " << move << endl;
+			}
+			
 			//Output like: "bestmove h7h5"
 		}
 	}

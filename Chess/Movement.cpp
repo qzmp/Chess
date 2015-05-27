@@ -61,4 +61,12 @@ string Movement::toString()
 	return result;
 }
 
+void Movement::setCapturing()
+{
+	capturing = true;
+}
 
+bool Movement::isCapturing()
+{
+	return capturing;
+}

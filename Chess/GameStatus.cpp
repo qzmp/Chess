@@ -20,6 +20,8 @@ void GameStatus::startSetup(){
 	for (int i = 0; i < 8; i++)
 		board[i].resize(8);
 
+	currentPlayer = White;
+
 	board[0][0] = new Rook(White, 0, 0);
 	board[0][1] = new Knight(White, 1, 0);
 	board[0][2] = new Bishop(White, 2, 0);
@@ -59,7 +61,23 @@ void GameStatus::startSetup(){
 
 void GameStatus::testSetup()
 {
+	this->board = vector<vector<Piece*>>();
+	this->pieces = list<Piece*>();
+	board.resize(8);
+	for (int i = 0; i < 8; i++)
+		board[i].resize(8);
 
+	board[6][4] = new Queen(Black, 4, 6);
+	board[4][4] = new Pawn(Black, 5, 4);
+	board[3][5] = new Pawn(White, 4, 3);
+	board[0][4] = new King(White, 4, 0);
+
+	WhiteKing = board[0][4];
+
+	pieces.push_back(board[6][4]);
+	pieces.push_back(board[4][4]);
+	pieces.push_back(board[0][4]);
+	pieces.push_back(board[3][5]);
 }
 
 vector<vector<Piece*>>& GameStatus::getBoard()
@@ -151,7 +169,6 @@ Piece* GameStatus::makeMove(Movement& move, bool& isValid)
 		{
 			pieces.remove(capturedPiece);
 		}
-
 		if ((movedPiece->getColor() == Black && isChecked(*BlackKing)) || (movedPiece->getColor() == White && isChecked(*WhiteKing)))
 		{
 			remakeMove(move, capturedPiece);
@@ -163,6 +180,22 @@ Piece* GameStatus::makeMove(Movement& move, bool& isValid)
 		isValid = true;
 		return capturedPiece;
 	}
+}
+
+void GameStatus::makeValidMove(Movement& move){
+	Piece* movedPiece = board[move.getStartPoint().getY()][move.getStartPoint().getX()];
+	Piece* capturedPiece = board[move.getEndPoint().getY()][move.getEndPoint().getX()];
+
+	board[move.getStartPoint().getY()][move.getStartPoint().getX()]->setLocation(move.getEndPoint().getX(), move.getEndPoint().getY());
+	board[move.getEndPoint().getY()][move.getEndPoint().getX()] = board[move.getStartPoint().getY()][move.getStartPoint().getX()];
+	board[move.getStartPoint().getY()][move.getStartPoint().getX()] = nullptr;
+
+	if (capturedPiece != nullptr)
+	{
+		pieces.remove(capturedPiece);
+	}
+
+	movedPiece->setLocation(move.getEndPoint().getX(), move.getEndPoint().getY());
 }
 
 void GameStatus::remakeMove(Movement& move, Piece* capturedPiece)
@@ -551,6 +584,17 @@ bool GameStatus::isAttackedByKnight(Piece& piece)
 bool GameStatus::isChecked(Piece& piece)
 {
 	return (isAttackedByKnight(piece) || isAttackedDiagonally(piece) || isAttackedHorizontally(piece) || isAttackedVertically(piece));
+
+	/*
+	list<Movement> moves = generateMoves(currentPlayer == Black ? White : Black);
+
+	for (list<Movement>::iterator it = moves.begin(); it != moves.end(); ++it)
+	{
+		if (it->getEndPoint() == piece.getLocation())
+			return true;
+	}
+	return false;
+	*/
 }
 
 Movement& GameStatus::minMax()
@@ -562,6 +606,7 @@ Movement& GameStatus::minMax()
 	bool isValid = true;
 
 	list<Movement> moves = generateMoves(currentPlayer);
+	bestMove = moves.front();
 	for (Movement& m : moves)
 	{
 		capturedPiece = makeMove(m, isValid);

@@ -36,3 +36,8 @@ void Point::setY(int y)
 {
 	this->y = y;
 }
+
+bool Point::operator==(Point& p1)
+{
+	return (this->getX() == p1.getX() && this->getY() == p1.getY());
+}

@@ -30,8 +30,6 @@ private:
 	const int DEPTH = 3;
 	vector<vector<Piece*>> board;
 	list<Piece*> pieces;
-	Piece* WhiteKing;
-	Piece* BlackKing;
 
 	Color currentPlayer;
 
@@ -69,11 +67,15 @@ public:
 	int rate();
 
 	Piece* makeMove(Movement& move, bool& isValid);
+	void makeValidMove(Movement& move);
 	void remakeMove(Movement& move, Piece* piece);
 
 	Movement& minMax();
 	int minMax(int depth, int a, int b, bool maximizingPlayer);
 
 	void changePlayer();
+
+	Piece* WhiteKing;
+	Piece* BlackKing;
 };
 
