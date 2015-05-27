@@ -13,6 +13,7 @@ public:
 	~Rook();
 
 	list<Movement> generateMoves(GameStatus& currentStatus);
+	list<Movement> generateMoves(GameStatus& currentStatus, int dirX, int dirY);
 
 	PieceType getPieceType();
 

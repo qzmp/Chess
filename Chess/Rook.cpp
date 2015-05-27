@@ -26,9 +26,6 @@ Rook::~Rook()
 list<Movement> Rook::generateMoves(GameStatus& currentStatus){
 	list<Movement> moves;
 
-	int x = location.getX();
-	int y = location.getY();
-
 	//top
 	moves.splice(moves.end(), generateMoves(currentStatus, 0, -1));
 
@@ -58,6 +55,7 @@ list<Movement> Rook::generateMoves(GameStatus& currentStatus, int dirX, int dirY
 		moves.push_back(Movement(location, Point(checkedX, checkedY)));
 		if (currentStatus.isOccupied(checkedX, checkedY))
 		{
+			moves.back().setCapturing();
 			captured = true;
 		}
 		checkedX = checkedX + dirX;

@@ -29,9 +29,6 @@ list<Movement> King::generateMoves(GameStatus& currentStatus){
 
 	list<Movement> moves;
 
-	int x = location.getX();
-	int y = location.getY();
-
 	//top left
 	moves.splice(moves.end(), generateMoves(currentStatus, -1, -1));
 
@@ -72,6 +69,10 @@ list<Movement> King::generateMoves(GameStatus& currentStatus, int dirX, int dirY
 	if (currentStatus.canPlace(checkedX, checkedY, this->color))
 	{
 		moves.push_back(Movement(location, Point(checkedX, checkedY)));
+		if (currentStatus.isOccupied(checkedX, checkedY))
+		{
+			moves.back().setCapturing();
+		}
 	}
 
 	return moves;

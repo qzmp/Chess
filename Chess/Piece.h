@@ -26,6 +26,8 @@ protected:
 
 	Point location;
 
+
+
 public:
 
 	enum PieceType{

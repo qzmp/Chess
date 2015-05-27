@@ -10,6 +10,9 @@ class Movement
 private:
 	Point startPoint;
 	Point endPoint;
+
+	bool capturing;
+
 public:
 
 	Movement();
@@ -24,6 +27,9 @@ public:
 	void setEndPoint(Point& p);
 
 	string toString();
+
+	void setCapturing();
+	bool isCapturing();
 
 };
 

@@ -26,71 +26,49 @@ Knight::~Knight()
 list<Movement> Knight::generateMoves(GameStatus& currentStatus){
 	list<Movement> moves;
 
+	//top top left
+	moves.splice(moves.end(), generateMoves(currentStatus, -1, -2));
+
+	//bottom top left
+	moves.splice(moves.end(), generateMoves(currentStatus, -2, -1));
+
+	//top top right
+	moves.splice(moves.end(), generateMoves(currentStatus, 1, -2));
+
+	//bottom top right
+	moves.splice(moves.end(), generateMoves(currentStatus, 2, -1));
+
+	//top bottom right
+	moves.splice(moves.end(), generateMoves(currentStatus, 2, -1));
+
+	//bottom bottom right
+	moves.splice(moves.end(), generateMoves(currentStatus, 1, 2));
+
+	//top bottom left
+	moves.splice(moves.end(), generateMoves(currentStatus, -1, 2));
+
+	//bottom bottom left
+	moves.splice(moves.end(), generateMoves(currentStatus, -2, 1));
+
+	return moves;
+}
+
+list<Movement> Knight::generateMoves(GameStatus& currentStatus, int dirX, int dirY)
+{
+	list<Movement> moves;
+
 	int x = location.getX();
 	int y = location.getY();
 
-	//top top left
-	int checkedX = x - 1;
-	int checkedY = y - 2;
+	int checkedX = x + dirX;
+	int checkedY = y + dirY;
 	if (currentStatus.canPlace(checkedX, checkedY, this->color))
 	{
 		moves.push_back(Movement(location, Point(checkedX, checkedY)));
-	}
-
-	//bottom top left
-	checkedX = x - 2;
-	checkedY = y - 1;
-	if (currentStatus.canPlace(checkedX, checkedY, this->color))
-	{
-		moves.push_back(Movement(location, Point(checkedX, checkedY)));
-	}
-
-	//top top right
-	checkedX = x + 1;
-	checkedY = y - 2;
-	if (currentStatus.canPlace(checkedX, checkedY, this->color))
-	{
-		moves.push_back(Movement(location, Point(checkedX, checkedY)));
-	}
-
-	//bottom top right
-	checkedX = x + 2;
-	checkedY = y - 1;
-	if (currentStatus.canPlace(checkedX, checkedY, this->color))
-	{
-		moves.push_back(Movement(location, Point(checkedX, checkedY)));
-	}
-
-	//top bottom right
-	checkedX = x + 2;
-	checkedY = y - 1;
-	if (currentStatus.canPlace(checkedX, checkedY, this->color))
-	{
-		moves.push_back(Movement(location, Point(checkedX, checkedY)));
-	}
-
-	//bottom bottom right
-	checkedX = x + 1;
-	checkedY = y + 2;
-	if (currentStatus.canPlace(checkedX, checkedY, this->color))
-	{
-		moves.push_back(Movement(location, Point(checkedX, checkedY)));
-	}
-
-	//top bottom left
-	checkedX = x - 1;
-	checkedY = y + 2;
-	if (currentStatus.canPlace(checkedX, checkedY, this->color))
-	{
-		moves.push_back(Movement(location, Point(checkedX, checkedY)));
-	}
-
-	//bottom bottom left
-	checkedX = x - 2;
-	checkedY = y + 1;
-	if (currentStatus.canPlace(checkedX, checkedY, this->color))
-	{
-		moves.push_back(Movement(location, Point(checkedX, checkedY)));
+		if (currentStatus.isOccupied(checkedX, checkedY))
+		{
+			moves.back().setCapturing();
+		}
 	}
 
 	return moves;

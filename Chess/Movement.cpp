@@ -1,10 +1,12 @@
 #include "Movement.h"
 Movement::Movement(){
-
+	capturing = false;
 }
 
 Movement::Movement(Point& startPoint, Point& endPoint)
 {
+	capturing = false;
+
 	this->startPoint = startPoint;
 	this->endPoint = endPoint;
 }
