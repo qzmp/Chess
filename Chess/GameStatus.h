@@ -72,6 +72,7 @@ public:
 
 	Movement& minMax();
 	int minMax(int depth, int a, int b, bool maximizingPlayer);
+	int minMaxCapture(int depth, int a, int b, bool maximizingPlayer);
 
 	void changePlayer();
 

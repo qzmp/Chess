@@ -612,7 +612,7 @@ Movement& GameStatus::minMax()
 		capturedPiece = makeMove(m, isValid);
 		if (isValid)
 		{
-			val = minMax(DEPTH - 1, numeric_limits<int>::min(), numeric_limits<int>::max(), false);
+			val = minMaxCapture(DEPTH - 1, numeric_limits<int>::min(), numeric_limits<int>::max(), false);
 			if (val > bestVal)
 			{
 				bestVal = val;
@@ -694,6 +694,94 @@ int GameStatus::minMax(int depth,int a, int b, bool maximizingPlayer)
 			}
 
 			it++;
+		}
+		return bestValue;
+	}
+}
+
+int GameStatus::minMaxCapture(int depth, int a, int b, bool maximizingPlayer)
+{
+	int val = 0;
+	bool isValid = true;
+	Piece* capturedPiece;
+
+	if (depth == 0)
+	{
+		return rate();
+	}
+
+	bool alphaBetaCut = false;
+
+	list<Movement> moves = generateMoves(getMinMaxPlayer(maximizingPlayer));
+	
+
+	if (maximizingPlayer)
+	{
+		int bestValue = numeric_limits<int>::min();
+		for (int i = 0; i < 2; i++)
+		{
+			list<Movement>::iterator it = moves.begin();
+			while (it != moves.end() && !alphaBetaCut)
+			{
+				if ((i == 0 && it->isCapturing()) || (i == 1 && !it->isCapturing()))
+				{
+					capturedPiece = makeMove(*it, isValid);
+					if (isValid)
+					{
+						val = minMax(depth - 1, a, b, !maximizingPlayer);
+						if (bestValue < val)
+						{
+							bestValue = val;
+						}
+						if (a < val)
+						{
+							a = val;
+						}
+						remakeMove(*it, capturedPiece);
+					}
+
+					if (b <= a){
+						alphaBetaCut = true;
+					}
+				}
+				it++;
+			}
+		}
+		
+		return bestValue;
+	}
+	else
+	{
+		int bestValue = numeric_limits<int>::max();
+		for (int i = 0; i < 2; i++)
+		{
+			list<Movement>::iterator it = moves.begin();
+			while (it != moves.end() && !alphaBetaCut)
+			{
+				if ((i == 0 && it->isCapturing()) || (i == 1 && !it->isCapturing()))
+				{
+					capturedPiece = makeMove(*it, isValid);
+					if (isValid)
+					{
+						val = minMax(depth - 1, a, b, !maximizingPlayer);
+						if (bestValue > val)
+						{
+							bestValue = val;
+						}
+						if (b > val)
+						{
+							b = val;
+						}
+						remakeMove(*it, capturedPiece);
+					}
+
+					if (b <= a){
+						alphaBetaCut = true;
+					}
+				}
+
+				it++;
+			}
 		}
 		return bestValue;
 	}

@@ -59,7 +59,7 @@ int main()
 			; // nothing to do
 		}
 		else if (Line.substr(0, 2) == "go") {
-			// Received a command like: "go wtime 300000 btime 300000 winc 0 binc 0"
+			// Received a command like: "go infinite"
 			bestMove = board.minMax();
 			move = bestMove.toString();
 			if (move != "a1a1")

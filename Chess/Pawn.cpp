@@ -60,6 +60,8 @@ list<Movement> Pawn::generateMoves(GameStatus& currentStatus){
 		if (currentStatus.isAvailable(checkedX, checkedY) && currentStatus.isOccupied(checkedX, checkedY) && !currentStatus.isColor(checkedX, checkedY, this->color))
 		{
 			moves.push_back(Movement(location, Point(checkedX, checkedY)));
+			moves.back().setCapturing();
+
 		}
 
 		//capture right
@@ -68,6 +70,7 @@ list<Movement> Pawn::generateMoves(GameStatus& currentStatus){
 		if (currentStatus.isAvailable(checkedX, checkedY) && currentStatus.isOccupied(checkedX, checkedY) && !currentStatus.isColor(checkedX, checkedY, this->color))
 		{
 			moves.push_back(Movement(location, Point(checkedX, checkedY)));
+			moves.back().setCapturing();
 		}
 	}
 	else //White
@@ -97,6 +100,7 @@ list<Movement> Pawn::generateMoves(GameStatus& currentStatus){
 		if (currentStatus.isAvailable(checkedX, checkedY) && currentStatus.isOccupied(checkedX, checkedY) && !currentStatus.isColor(checkedX, checkedY, this->color))
 		{
 			moves.push_back(Movement(location, Point(checkedX, checkedY)));
+			moves.back().setCapturing();
 		}
 
 		//capture right
@@ -105,6 +109,7 @@ list<Movement> Pawn::generateMoves(GameStatus& currentStatus){
 		if (currentStatus.isAvailable(checkedX, checkedY) && currentStatus.isOccupied(checkedX, checkedY) && !currentStatus.isColor(checkedX, checkedY, this->color))
 		{
 			moves.push_back(Movement(location, Point(checkedX, checkedY)));
+			moves.back().setCapturing();
 		}
 	}
 	
