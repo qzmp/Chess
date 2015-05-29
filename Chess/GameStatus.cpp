@@ -597,7 +597,7 @@ bool GameStatus::isChecked(Piece& piece)
 	*/
 }
 
-Movement& GameStatus::minMax()
+Movement& GameStatus::minMax(Movement moveBeforeLast)
 {
 	Movement bestMove;
 	int bestVal = numeric_limits<int>::min();
@@ -609,17 +609,21 @@ Movement& GameStatus::minMax()
 	bestMove = moves.front();
 	for (Movement& m : moves)
 	{
-		capturedPiece = makeMove(m, isValid);
-		if (isValid)
+		if (moveBeforeLast != m)
 		{
-			val = minMaxCapture(DEPTH - 1, numeric_limits<int>::min(), numeric_limits<int>::max(), false);
-			if (val > bestVal)
+			capturedPiece = makeMove(m, isValid);
+			if (isValid)
 			{
-				bestVal = val;
-				bestMove = m;
+				val = minMax(DEPTH - 1, numeric_limits<int>::min(), numeric_limits<int>::max(), false);
+				if (val > bestVal)
+				{
+					bestVal = val;
+					bestMove = m;
+				}
+				remakeMove(m, capturedPiece);
 			}
-			remakeMove(m, capturedPiece);
 		}
+		
 	}
 	return bestMove;
 }
@@ -687,7 +691,7 @@ int GameStatus::minMax(int depth,int a, int b, bool maximizingPlayer)
 					b = val;
 				}
 				remakeMove(*it, capturedPiece);
-			}	
+			}
 
 			if (b <= a){
 				alphaBetaCut = true;
@@ -714,7 +718,6 @@ int GameStatus::minMaxCapture(int depth, int a, int b, bool maximizingPlayer)
 
 	list<Movement> moves = generateMoves(getMinMaxPlayer(maximizingPlayer));
 	
-
 	if (maximizingPlayer)
 	{
 		int bestValue = numeric_limits<int>::min();

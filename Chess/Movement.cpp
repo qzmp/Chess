@@ -72,3 +72,13 @@ bool Movement::isCapturing()
 {
 	return capturing;
 }
+
+bool Movement::operator==(Movement& other)
+{
+	return (this->startPoint == other.getStartPoint()) && (this->endPoint == other.getEndPoint());
+}
+
+bool Movement::operator!=(Movement& other)
+{
+	return (this->startPoint != other.getStartPoint()) || (this->endPoint != other.getEndPoint());
+}

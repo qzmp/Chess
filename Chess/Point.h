@@ -16,5 +16,6 @@ public:
 	void setY(int y);
 
 	bool operator==(Point& p1);
+	bool operator!=(Point& p1);
 };
 

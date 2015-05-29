@@ -31,5 +31,8 @@ public:
 	void setCapturing();
 	bool isCapturing();
 
+	bool operator==(Movement& other);
+	bool operator!=(Movement& other);
+
 };
 

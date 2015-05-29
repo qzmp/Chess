@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+//#include <queue>
 #include "GameStatus.h"
 
 using namespace std;
@@ -17,6 +18,8 @@ int main()
 	*/
 	
 	Movement bestMove;
+
+	Movement moveBeforeLast;
 	
 	string Line; //to read the command given by the GUI
 	string move;
@@ -54,13 +57,18 @@ int main()
 				board.changePlayer();
 				pos += 5;
 			}
+
+			if (pos - 20 > 23)
+			{
+				moveBeforeLast = Line.substr(pos - 20, 4);
+			}			
 		}
 		else if (Line == "stop") {
 			; // nothing to do
 		}
 		else if (Line.substr(0, 2) == "go") {
 			// Received a command like: "go infinite"
-			bestMove = board.minMax();
+			bestMove = board.minMax(moveBeforeLast);
 			move = bestMove.toString();
 			if (move != "a1a1")
 			{

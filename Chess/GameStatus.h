@@ -27,7 +27,7 @@ class GameStatus
 {
 	
 private:
-	const int DEPTH = 3;
+	const int DEPTH = 4;
 	vector<vector<Piece*>> board;
 	list<Piece*> pieces;
 
@@ -70,7 +70,7 @@ public:
 	void makeValidMove(Movement& move);
 	void remakeMove(Movement& move, Piece* piece);
 
-	Movement& minMax();
+	Movement& minMax(Movement moveBeforeLast);
 	int minMax(int depth, int a, int b, bool maximizingPlayer);
 	int minMaxCapture(int depth, int a, int b, bool maximizingPlayer);
 
