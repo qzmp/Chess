@@ -84,5 +84,5 @@ Piece::PieceType Queen::getPieceType()
 }
 int Queen::getValue()
 {
-	return 900 + pieceSquareTable[location.getY()][location.getY()];
+	return 900 +pieceSquareTable[location.getY()][location.getY()];
 }

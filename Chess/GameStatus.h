@@ -1,6 +1,8 @@
 #pragma once
 
 #include <limits>
+#include <iostream>
+#include <fstream>
 
 #include "Movement.h"
 #include "King.h"
@@ -40,7 +42,15 @@ private:
 
 	Color getMinMaxPlayer(bool maximizing);
 
+	int visitNum = 0;
+
 public:
+	enum Mode{
+		STANDARD,
+		NOAB,
+		CAPTURE,
+	};
+
 	GameStatus();
 	~GameStatus();
 	
@@ -70,13 +80,18 @@ public:
 	void makeValidMove(Movement& move);
 	void remakeMove(Movement& move, Piece* piece);
 
-	Movement& minMax(Movement moveBeforeLast);
+	Movement& minMax(Movement moveBeforeLast, Mode mode);
 	int minMax(int depth, int a, int b, bool maximizingPlayer);
+	int minMax(int depth, bool maximizingPlayer);
 	int minMaxCapture(int depth, int a, int b, bool maximizingPlayer);
 
 	void changePlayer();
 
 	Piece* WhiteKing;
 	Piece* BlackKing;
+
+	void upgradePawn(int x, int y);
+
+	void testAlfaBeta();
 };
 

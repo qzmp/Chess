@@ -81,5 +81,5 @@ Piece::PieceType Knight::getPieceType()
 
 int Knight::getValue()
 {
-	return 320 + pieceSquareTable[location.getY()][location.getY()];
+	return 320 +pieceSquareTable[location.getY()][location.getY()];
 }

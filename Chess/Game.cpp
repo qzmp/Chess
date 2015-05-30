@@ -1,4 +1,3 @@
-#include <iostream>
 #include <string>
 //#include <queue>
 #include "GameStatus.h"
@@ -9,6 +8,7 @@ int main()
 {
 	bool isValid = true;
 	GameStatus board = GameStatus();
+	///board.testAlfaBeta();
 	/*
 	board.testSetup();
 	board.isChecked(*board.WhiteKing);
@@ -33,7 +33,7 @@ int main()
 		string test = Line.substr(0, 23);
 		if (Line == "uci") {
 			cout << "id name Deep Yellow" << endl;
-			cout << "id author sqmp" << endl;
+			cout << "id author qzmp" << endl;
 			cout << "uciok" << endl;
 		}
 		else if (Line == "quit") {
@@ -52,8 +52,13 @@ int main()
 			while ((pos + 4) <= Line.length())
 			{
 				string move = Line.substr(pos, 4);
+				
 				bestMove = Movement(move);
 				board.makeValidMove(bestMove);
+				if (pos + 5 <= Line.length() && Line.substr(pos + 4, 1) == "q"){
+					board.upgradePawn(bestMove.getEndPoint().getX(), bestMove.getEndPoint().getY());
+					pos++;
+				}
 				board.changePlayer();
 				pos += 5;
 			}
@@ -67,16 +72,14 @@ int main()
 			; // nothing to do
 		}
 		else if (Line.substr(0, 2) == "go") {
-			// Received a command like: "go infinite"
-			bestMove = board.minMax(moveBeforeLast);
+
+			bestMove = board.minMax(moveBeforeLast, GameStatus::STANDARD);
 			move = bestMove.toString();
 			if (move != "a1a1")
 			{
 				board.makeMove(bestMove, isValid);
 				cout << "bestmove " << move << endl;
 			}
-			
-			//Output like: "bestmove h7h5"
 		}
 	}
 	

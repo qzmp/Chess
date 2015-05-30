@@ -123,5 +123,5 @@ Piece::PieceType Pawn::getPieceType()
 
 int Pawn::getValue()
 {
-	return 100 + pieceSquareTable[location.getY()][location.getY()];
+	return 100 +pieceSquareTable[location.getY()][location.getY()];
 }

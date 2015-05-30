@@ -72,5 +72,5 @@ Piece::PieceType Rook::getPieceType()
 
 int Rook::getValue()
 {
-	return 500 + pieceSquareTable[location.getY()][location.getY()];
+	return 500 +pieceSquareTable[location.getY()][location.getY()];
 }

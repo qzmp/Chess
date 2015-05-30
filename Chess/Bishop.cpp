@@ -73,5 +73,5 @@ Piece::PieceType Bishop::getPieceType()
 }
 
 int Bishop::getValue(){
-	return 330 + pieceSquareTable[location.getY()][location.getY()];
+	return 330 +pieceSquareTable[location.getY()][location.getY()];
 }

@@ -87,5 +87,5 @@ Piece::PieceType King::getPieceType()
 
 int King::getValue()
 {
-	return 20000 + pieceSquareTable[location.getY()][location.getY()];
+	return 20000 +pieceSquareTable[location.getY()][location.getY()];
 }

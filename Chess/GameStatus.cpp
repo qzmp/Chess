@@ -150,7 +150,6 @@ int GameStatus::rate()
 
 Piece* GameStatus::makeMove(Movement& move, bool& isValid)
 {
-	
 	if (isOccupied(move.getEndPoint()) && getPiece(move.getEndPoint()).getPieceType() == Piece::PieceType::King)
 	{
 		isValid = false;
@@ -597,16 +596,16 @@ bool GameStatus::isChecked(Piece& piece)
 	*/
 }
 
-Movement& GameStatus::minMax(Movement moveBeforeLast)
+Movement& GameStatus::minMax(Movement moveBeforeLast, Mode mode)
 {
 	Movement bestMove;
 	int bestVal = numeric_limits<int>::min();
 	int val;
 	Piece* capturedPiece;
 	bool isValid = true;
+	visitNum = 0;
 
 	list<Movement> moves = generateMoves(currentPlayer);
-	bestMove = moves.front();
 	for (Movement& m : moves)
 	{
 		if (moveBeforeLast != m)
@@ -614,7 +613,26 @@ Movement& GameStatus::minMax(Movement moveBeforeLast)
 			capturedPiece = makeMove(m, isValid);
 			if (isValid)
 			{
-				val = minMax(DEPTH - 1, numeric_limits<int>::min(), numeric_limits<int>::max(), false);
+				if (bestMove.getStartPoint() == bestMove.getEndPoint()) //fill best move if is empty
+				{
+					bestMove = m;
+				}
+
+				switch (mode)
+				{
+				case STANDARD: 
+					val = minMax(DEPTH - 1, numeric_limits<int>::min(), numeric_limits<int>::max(), false);
+					break;
+				case NOAB:
+					val = minMax(DEPTH - 1, false);
+					break;
+				case CAPTURE:
+					val = minMaxCapture(DEPTH - 1, numeric_limits<int>::min(), numeric_limits<int>::max(), false);
+					break;
+				default:
+					val = minMax(DEPTH - 1, numeric_limits<int>::min(), numeric_limits<int>::max(), false);
+				}
+				
 				if (val > bestVal)
 				{
 					bestVal = val;
@@ -623,7 +641,6 @@ Movement& GameStatus::minMax(Movement moveBeforeLast)
 				remakeMove(m, capturedPiece);
 			}
 		}
-		
 	}
 	return bestMove;
 }
@@ -633,6 +650,7 @@ int GameStatus::minMax(int depth,int a, int b, bool maximizingPlayer)
 	int val = 0;
 	bool isValid = true;
 	Piece* capturedPiece;
+	visitNum++;
 
 	if (depth == 0)
 	{
@@ -703,8 +721,66 @@ int GameStatus::minMax(int depth,int a, int b, bool maximizingPlayer)
 	}
 }
 
+int GameStatus::minMax(int depth, bool maximizingPlayer)
+{
+	int val = 0;
+	bool isValid = true;
+	Piece* capturedPiece;
+	visitNum++;
+
+	if (depth == 0)
+	{
+		return rate();
+	}
+
+	list<Movement> moves = generateMoves(getMinMaxPlayer(maximizingPlayer));
+	list<Movement>::iterator it = moves.begin();
+
+	if (maximizingPlayer)
+	{
+		int bestValue = numeric_limits<int>::min();
+		while (it != moves.end())
+		{
+			capturedPiece = makeMove(*it, isValid);
+			if (isValid)
+			{
+				val = minMax(depth - 1, !maximizingPlayer);
+				if (bestValue < val)
+				{
+					bestValue = val;
+				}
+				remakeMove(*it, capturedPiece);
+			}
+
+			it++;
+		}
+		return bestValue;
+	}
+	else
+	{
+		int bestValue = numeric_limits<int>::max();
+		while (it != moves.end())
+		{
+			capturedPiece = makeMove(*it, isValid);
+			if (isValid)
+			{
+				val = minMax(depth - 1, !maximizingPlayer);
+				if (bestValue > val)
+				{
+					bestValue = val;
+				}
+				remakeMove(*it, capturedPiece);
+			}
+
+			it++;
+		}
+		return bestValue;
+	}
+}
+
 int GameStatus::minMaxCapture(int depth, int a, int b, bool maximizingPlayer)
 {
+	visitNum++;
 	int val = 0;
 	bool isValid = true;
 	Piece* capturedPiece;
@@ -805,4 +881,63 @@ Color GameStatus::getMinMaxPlayer(bool maximizing)
 	{
 		return (maximizing ? White : Black);
 	}
+}
+
+void GameStatus::upgradePawn(int x, int y)
+{
+	list<Piece*>::iterator it = pieces.begin();
+	bool found = false;
+	while (!found && it != pieces.end())
+	{
+		if ((*it)->getLocation().getX() == x && (*it)->getLocation().getY() == y)
+		{
+			found = true;
+			Piece* p = (*it);
+			pieces.push_back(new Queen(p->getColor(), x, y));
+			pieces.remove(p);
+			board[y][x] = pieces.back();
+			break;
+		}
+		it++;
+	}
+}
+
+void GameStatus::testAlfaBeta()
+{
+	startSetup();
+
+	int visitedNodesStandard;
+	int visitedNodesNoAB;
+	int visitedNodesCapture;
+
+	ofstream myfile;
+	myfile.open("test.txt");
+	
+
+	int highestDiff;
+	Movement move;
+	bool isValid;
+	do
+	{
+
+		
+		move = minMax(move, STANDARD);
+		visitedNodesStandard = visitNum;
+
+		move = minMax(move, NOAB);
+		visitedNodesNoAB = visitNum;
+
+		move = minMax(move, CAPTURE);
+		visitedNodesCapture = visitNum;
+
+		myfile << visitedNodesStandard << " " << visitedNodesNoAB << " " << visitedNodesCapture << endl;
+
+		makeMove(move, isValid);
+
+		changePlayer();
+
+	} while (move.getStartPoint() != move.getEndPoint());
+
+	myfile.close();
+	
 }
